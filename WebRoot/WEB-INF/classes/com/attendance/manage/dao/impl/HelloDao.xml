@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+ <mapper namespace="com.attendance.manage.dao.HelloDao">  
+	 <resultMap type="com.attendance.manage.entity.User" id="userResultMap">    
+	        <id property="id" column="id"/>    
+	        <result property="name" column="name"/>
+	  </resultMap>  
+	  <select id="findUserById" parameterType="int" resultType="com.attendance.manage.entity.User" resultMap="userResultMap">  
+	      SELECT * FROM user WHERE id=#{id} 
+	  </select>  
+	  <insert id="insertUser" parameterType="com.attendance.manage.entity.User">
+	  	  insert user(name) values (#{name})
+	  </insert>
+	  <update id="updateUser" parameterType="com.attendance.manage.entity.User">
+	  	  update user set name=#{name} where id=#{id}
+	  </update>
+	  <delete id="deleteUser" parameterType="com.attendance.manage.entity.User"> 
+	  	  delete from user where id=#{id}
+	  </delete>
+	  
+</mapper>  

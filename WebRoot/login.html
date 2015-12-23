@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Entrar-shadow Website form | w3layouts</title>
+		<meta charset="utf-8">
+		<link href="css/style.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!--webfonts-->
+		 <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,300,600,700' rel='stylesheet' type='text/css'> 
+		<script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+		  <script src="js/jquery-ui-1.9.1.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.ui.datepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+    <script src="js/initCurrentDate.js"></script>
+    <script src="js/uploadify/jquery.uploadify.min.js"></script>
+    <script src="js/artDialog/artDialog.min.js"></script>
+    <script src="js/jquery.caretInsert.js"></script>
+    <script src="js/jquery.Jcrop.min.js"></script>
+    <script src="js/chosen/jquery.chosen.min.js"></script>
+    <script src="js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="/js/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="js/jquery/ddcombo/lib/jquery.ready.js"></script>
+    <script type="text/javascript" src="js/jquery/ddcombo/lib/jquery.flydom-3.1.1.js"></script>
+    <script type="text/javascript" src="js/jquery/ddcombo/lib/autocomplete/jquery.bgiframe.min.js"></script>
+    <script type="text/javascript" src="js/jquery/ddcombo/lib/autocomplete/jquery.dimensions.js"></script>
+    <script type="text/javascript" src="js/jquery/ddcombo/lib/autocomplete/jquery.ajaxQueue.js"></script>
+    <script type="text/javascript" src="js/jquery/ddcombo/lib/autocomplete/thickbox-compressed.js"></script>
+    <script type="text/javascript" src="js/jquery/ddcombo/jquery.ddcombo.js"></script>
+    <script type="text/javascript" src="js/jquery/main.js"></script>
+		<script>
+    $(document).ready(function(){
+    	
+        $('#login_form').bind('submit', function(){
+       //username= $('#username').val();
+       // password=$('#password').val();
+ $.ajax({type:"post",url:"/attendancemanage/login/submit.json",data:$('#login_form').serialize(),success: function(data){
+ if(data=="success")window.location.href="/attendancemanage/login/index.jhtml"; else $('#err').html(data);
+ }});   
+                return false;
+     });
+});
+
+</script>
+</head>
+<body>
+	 <!-----start-main---->
+	 <div class="main">
+		<div class="login-form">
+			<h1>登 陆</h1>
+					<div class="head">
+						<img src="img/user.png" alt=""/>
+					</div>
+				<form id="login_form"  name="login_form">
+						<div id="err"  name="err" style="margin:5px"></div>	
+						<input id="username"  name="username" type="text" class="text" value="用户名" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '用户名';}" >
+						<input id="password"  name="password" type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+						<div class="submit">
+							<input type="submit"  value="登 陆" >
+					</div>	
+					<p><a href="reset_password.html">忘记密码 ?</a></p>
+				</form>
+		</div>
+			
+	 </div>
+	 <!-----//end-main---->
+		 		
+</body>
+</html>
