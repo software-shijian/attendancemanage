@@ -81,6 +81,11 @@ public class LoginController {
 			model.addAttribute("message", "密码错误！");
 			return "";
 		}
+		if (session.getAttribute("username") != null
+				&& session.getAttribute("username").equals(username)) {
+			model.addAttribute("message", "已登录，请勿重复登录！");
+			return "";
+		}
 		SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
 		// 登录后存放进shiro token
 		UsernamePasswordToken token = new UsernamePasswordToken(
