@@ -12,13 +12,13 @@
 <title>Lumino - Tables</title>
 
 
-
+<script src="${base}/js/jquery/jquery.min.js"></script>
 <link href="${base}/css/bootstrap.min.css" rel="stylesheet">
 <link href="${base}/css/datepicker3.css" rel="stylesheet">
 <link href="${base}/css/bootstrap-table.css" rel="stylesheet">
 
 <link href="${base}/css/styles.css" rel="stylesheet">
-<script src="${base}/js/jquery/jquery.min.js"></script>
+
 
 
 <!--[if lt IE 9]>
