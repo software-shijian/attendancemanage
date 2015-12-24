@@ -97,7 +97,7 @@
 					</li>
 					<li>
 						<a class="" href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml?status=3">
-							<span class="glyphicon glyphicon-pencil"></span> 我的申请
+							<span class="glyphicon glyphicon-pencil" ></span> 我的申请
 						</a>
 					</li>
 					<li>
