@@ -33,4 +33,19 @@ public class RoleAuthorityServiceImpl implements RoleAuthorityService {
 	public List<RoleAuthority> selectAll() {
 		return roleAuthorityDao.selectAll();
 	}
+
+	public int updateByPrimaryKey(RoleAuthority roleAuthority) {
+
+		return roleAuthorityDao.updateByPrimaryKey(roleAuthority);
+	}
+
+	public RoleAuthority selectByPrimaryKey(Long id) {
+
+		return roleAuthorityDao.selectByPrimaryKey(id);
+	}
+
+	public int deleteByPrimaryKey(Long id) {
+
+		return roleAuthorityDao.deleteByPrimaryKey(id);
+	}
 }

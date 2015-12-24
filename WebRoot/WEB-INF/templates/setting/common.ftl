@@ -163,7 +163,17 @@
 					</li>
 					<li>
 						<a class="" href="#">
+							<span class="glyphicon glyphicon-th"></span> 员工角色配置
+						</a>
+					</li>
+					<li>
+						<a class="" href="#">
 							<span class="glyphicon glyphicon-th"></span> 假期配置
+						</a>
+					</li>
+					<li>
+						<a class="" href="#">
+							<span class="glyphicon glyphicon-th"></span> 系统配置
 						</a>
 					</li>
 				</ul>

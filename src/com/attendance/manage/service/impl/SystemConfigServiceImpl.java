@@ -33,4 +33,19 @@ public class SystemConfigServiceImpl implements SystemConfigService {
 	public List<SystemConfig> selectAll() {
 		return systemConfigDao.selectAll();
 	}
+
+	public SystemConfig selectByKey(String key) {
+
+		return systemConfigDao.selectByKey(key);
+	}
+
+	public int updateByKey(SystemConfig systemConfig) {
+
+		return systemConfigDao.updateByKey(systemConfig);
+	}
+
+	public int deleteByKey(String key) {
+
+		return systemConfigDao.deleteByKey(key);
+	}
 }
