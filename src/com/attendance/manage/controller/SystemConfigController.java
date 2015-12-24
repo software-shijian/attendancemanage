@@ -37,7 +37,7 @@ public class SystemConfigController {
 	public String getProducts(Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		List<Role> roles = roleServiceImpl.selectAll();
-		model.addAttribute("total", roles.size());
+		// model.addAttribute("total", roles.size());
 		model.addAttribute("rows", roles);
 		return "/setting/role";
 

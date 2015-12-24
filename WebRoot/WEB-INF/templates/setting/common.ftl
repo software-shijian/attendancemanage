@@ -18,7 +18,7 @@
 <link href="${base}/css/bootstrap-table.css" rel="stylesheet">
 
 <link href="${base}/css/styles.css" rel="stylesheet">
-
+<script src="${base}/js/jquery/jquery.min.js"></script>
 
 
 <!--[if lt IE 9]>
