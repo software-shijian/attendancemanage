@@ -13,19 +13,19 @@
 
 
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/datepicker3.css" rel="stylesheet">
-<link href="css/bootstrap-table.css" rel="stylesheet">
+<link href="${base}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${base}/css/datepicker3.css" rel="stylesheet">
+<link href="${base}/css/bootstrap-table.css" rel="stylesheet">
 
-<link href="css/styles.css" rel="stylesheet">
-
+<link href="${base}/css/styles.css" rel="stylesheet">
+<script src="${base}/js/jquery/jquery.min.js"></script>
 
 
 <!--[if lt IE 9]>
 
-<script src="js/html5shiv.js"></script>
+<script src="${base}/js/html5shiv.js"></script>
 
-<script src="js/respond.min.js"></script>
+<script src="${base}/js/respond.min.js"></script>
 
 <![endif]-->
 
@@ -163,7 +163,17 @@
 					</li>
 					<li>
 						<a class="" href="#">
+							<span class="glyphicon glyphicon-th"></span> 员工角色配置
+						</a>
+					</li>
+					<li>
+						<a class="" href="#">
 							<span class="glyphicon glyphicon-th"></span> 假期配置
+						</a>
+					</li>
+					<li>
+						<a class="" href="#">
+							<span class="glyphicon glyphicon-th"></span> 系统配置
 						</a>
 					</li>
 				</ul>
@@ -184,16 +194,16 @@
 		
 	</div><!--/.main-->
 
-	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="${base}/js/jquery-1.11.1.min.js"></script>
 
-	<script src="js/bootstrap.min.js"></script>
+	<script src="${base}/js/bootstrap.min.js"></script>
 
-	<script src="js/chart.min.js"></script>
-	<script src="js/chart-data.js"></script>
-	<script src="js/easypiechart.js"></script>
-	<script src="js/easypiechart-data.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-	<script src="js/bootstrap-table.js"></script>
+	<script src="${base}/js/chart.min.js"></script>
+	<script src="${base}/js/chart-data.js"></script>
+	<script src="${base}/js/easypiechart.js"></script>
+	<script src="${base}/js/easypiechart-data.js"></script>
+	<script src="${base}/js/bootstrap-datepicker.js"></script>
+	<script src="${base}/js/bootstrap-table.js"></script>
 	<script>
 		!function ($) {
 			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  

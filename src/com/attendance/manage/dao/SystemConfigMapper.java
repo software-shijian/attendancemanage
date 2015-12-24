@@ -1,7 +1,8 @@
 package com.attendance.manage.dao;
 
-import com.attendance.manage.model.SystemConfig;
 import java.util.List;
+
+import com.attendance.manage.model.SystemConfig;
 
 public interface SystemConfigMapper {
 
@@ -16,4 +17,10 @@ public interface SystemConfigMapper {
 	 * @mbggenerated
 	 */
 	List<SystemConfig> selectAll();
+
+	SystemConfig selectByKey(String key);
+
+	int updateByKey(SystemConfig systemConfig);
+
+	int deleteByKey(String key);
 }

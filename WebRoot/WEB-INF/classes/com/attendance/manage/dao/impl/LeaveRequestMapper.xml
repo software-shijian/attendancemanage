@@ -77,4 +77,11 @@
     type_id, description, status, last_handler
     from leave_request
   </select>
+  
+  
+  <select id="selectApproveByID" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, create_date, modify_date, stuff_id, application_time, begin_time, end_time, 
+    type_id, description, status, last_handler
+    from leave_request where id={#id,jdbcType=BIGINT}
+  </select>
 </mapper>
