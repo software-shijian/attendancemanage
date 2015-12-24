@@ -152,27 +152,27 @@
 				</a>
 				<ul class="children collapse" id="setting">
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/setting/role.jhtml">
 							<span class="glyphicon glyphicon-th"></span> 角色设置
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/setting/roleAuthority.jhtml">
 							<span class="glyphicon glyphicon-th"></span> 权限设置
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/setting/stuffRole.jhtml">
 							<span class="glyphicon glyphicon-th"></span> 员工角色配置
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/setting/vacationInfo.jhtml">
 							<span class="glyphicon glyphicon-th"></span> 假期配置
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/setting/systemConfig.jhtml">
 							<span class="glyphicon glyphicon-th"></span> 系统配置
 						</a>
 					</li>
@@ -186,7 +186,7 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Tables</li>
+				<li class="active"> 设置</li>
 			</ol>
 		</div><!--/.row-->	
 		
@@ -208,7 +208,7 @@
 		!function ($) {
 			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
 				$(this).find('em:first').toggleClass("glyphicon-minus");	  
-			}); 
+			});
 			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
 		}(window.jQuery);
 

@@ -18,7 +18,7 @@ import com.attendance.manage.service.SystemConfigService;
 
 @Scope("prototype")
 @Controller
-@RequestMapping("/setting/system")
+@RequestMapping("/setting/systemConfig")
 public class SystemConfigController {
 
 	@Autowired

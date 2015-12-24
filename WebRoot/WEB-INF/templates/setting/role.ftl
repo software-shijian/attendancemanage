@@ -17,7 +17,7 @@
 								</div>
 								<div class="panel-heading bk-bg-white">
 									<div class="panel-actions">
-										<a href="#" class="btn-minimize"><i class="fa fa-edit"> 新增角色 </i></a>
+										<a href="#" class="btn-minimize"><i class="fa fa-edit"> 新增 </i></a>
 									</div>
 								</div>
 								<div class="panel-body">
