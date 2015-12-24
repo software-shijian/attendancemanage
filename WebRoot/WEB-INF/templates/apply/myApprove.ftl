@@ -15,13 +15,15 @@
           <th id="approListApproveUser" class="ws8" >审批人</th>
           <th id="approListResult"  nowrap="nowrap">审批结果</th>
         </tr>
-       <tr>
-          <th >休假</th>
-          <th style="text-align:center">我要休假</th>
-          <th >2015-12-17</th>
-          <th  >经理</th>
-          <th  style="color:#080">审批中</th>
-      </tr>
+        <#list approveList as approve>
+		       <tr>
+		          <th >${approve.type_id!""}</th>
+		          <th style="text-align:center">${approve.description}</th>
+		          <th >${approve.application_time!""}</th>
+		          <th  >${approve.last_handler!""}</th>
+		          <th  style="color:#080">${approve.status!""}</th>
+		       </tr>
+	     </#list>
    </tbody>
 </table>
 
