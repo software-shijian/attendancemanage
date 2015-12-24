@@ -1,6 +1,7 @@
 <#include "../common/_left.ftl"/>
 <@left>
        <table class="table" style="margin-top:45px;">
+       	  <input type="hidden" id="username" value="${stuff.username!""}"/>
           <tbody>
               <tr>
                    <td style="width:10%;text-align:right;">申请人：</td>
@@ -45,12 +46,29 @@
              </tr>
            </tbody>
        </table>
+      
 </@left>
 <script type="text/javascript">
+	  
 	  function clickHandler(){
 		  var description= $('#description').val();
 	      var approveId=$('#approveId').val();
-	      $.post("http://localhost:8080/attendancemanage/nomal/leavareq/newApply.jhtml");
+	      var username=$('#username').val();
+	      if(description==null || description==""){
+	      	alert('申请理由不能为空', '友情提示！');
+	      	return
+	      }
+	      if(approveId=="请选择审批人"){
+	      	alert('请选择审批人', '友情提示！');
+	      	return
+	      }
+	     $.get(
+		     "/attendancemanage/nomal/leavareq/newApply.jhtml",
+		     {'description':description,'approveId':approveId,"username":username},
+		     function(msg){
+			     window.location.href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml"
+		     }
+		     );
 	     
 	 }
 	 		 
