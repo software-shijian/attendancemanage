@@ -1,5 +1,5 @@
-<#include "../common/_left.ftl"/>
-<@left>
+<#include "../common/common.ftl"/>
+<@common>
        <table class="table" style="margin-top:45px;">
        	  <input type="hidden" id="username" value="${stuff.username!""}"/>
           <tbody>
@@ -47,7 +47,7 @@
            </tbody>
        </table>
       
-</@left>
+</@common>
 <script type="text/javascript">
 	  
 	  function clickHandler(){
@@ -66,7 +66,7 @@
 		     "/attendancemanage/nomal/leavareq/newApply.jhtml",
 		     {'description':description,'approveId':approveId,"username":username},
 		     function(msg){
-			     window.location.href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml"
+			     window.location.href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml?status=3"
 		     }
 		     );
 	     

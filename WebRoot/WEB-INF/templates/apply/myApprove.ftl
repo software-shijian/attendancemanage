@@ -1,8 +1,8 @@
-<#include "../common/_left.ftl"/>
+<#include "../common/common.ftl"/>
 <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<@left>
+<@common>
 <div style="float:right;margin-top:10px;margin-bottom:5px;">
  <button type="button" class="btn btn-default"  data-toggle="button" onClick="all_status(3);"> 所有(${statusMap.all_approve})</button>
  <button type="button" class="btn btn-default"  data-toggle="button" onClick="all_status(1);"> 同意(${statusMap.ok_approve})</button>
@@ -97,6 +97,6 @@
 	 	}
 </script>
 
-</@left>
+</@common>
 
 

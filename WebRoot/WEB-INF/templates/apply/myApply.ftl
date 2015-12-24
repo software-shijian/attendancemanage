@@ -1,5 +1,5 @@
-<#include "../common/_left.ftl"/>
-<@left>
+<#include "../common/common.ftl"/>
+<@common>
 <div style="float:right;margin-top:10px;margin-bottom:5px;">
  <button type="button" class="btn btn-default"  data-toggle="button" onClick="all_status(3);"> 所有(${statusMap.all_approve})</button>
  <button type="button" class="btn btn-default"  data-toggle="button" onClick="all_status(0);"> 审批中(${statusMap.approve})</button>
@@ -59,4 +59,4 @@
 	 	}
 
 </script>
-</@left>
+</@common>
