@@ -1,75 +1,75 @@
-<#include "../common/_left.ftl"/>
-<@left>
+<#include "../common/common.ftl"/>
+<@common>
        <table class="table" style="margin-top:45px;">
+       	  <input type="hidden" id="username" value="${stuff.username!""}"/>
           <tbody>
               <tr>
                    <td style="width:10%;text-align:right;">申请人：</td>
-                   <td >杨刚</td>
+                   <td >${stuff.username!""}</td>
               </tr>
-         <!--     <tr>
+          	  <tr>
                    <td style="width:10%;text-align:right;">申请部门：</td>
-                   <td >技术部</td>
+                   <td >${stuff.depart!""}</td>
              </tr>
-             -->
+             
              <tr>
                    <td style="width:10%;text-align:right;"><span style="color:#F00">*</span>申请内容：</td>
                    <td  >
                         <div class="form-group">
                          
-                          <textarea class="form-control" rows="7"></textarea>
+                          <textarea class="form-control" rows="7" id="description"></textarea>
                         </div>
                   
                    </td>
              </tr>
              <tr>
                    <td style="width:10%;text-align:right;"><span style="color:#F00">*</span>审批人：</td>
-                   <td >
-                     <button class="btn btn-link" data-toggle="modal" data-target="#myModal">
-                                选择审批人
-                     </button>
-                     <!--开始模态框-->
-                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                               <div class="modal-content">
-                                 <div class="modal-header">
-                                    <button type="button" class="close"  data-dismiss="modal" aria-hidden="true"> &times;
-                                      </button>
-                                     <h4 class="modal-title" id="myModalLabel"> 选择申请人 </h4>
-                                 </div>
-                                 <!--模态框主体-->
-                                 <div class="modal-body">
-                                       <!--搜索框-->
-                                       <div>
-                                          <form class="navbar-form navbar-left" role="search">
-                                             <div class="form-group">
-                                              <input type="text" class="form-control" placeholder="Search">
-                                             </div>
-                                             <button type="submit" class="btn btn-default">搜索</button>
-                                          </form>    
-                                        </div>
-
-                                 </div>
-                                 <div class="modal-footer">
-                                      <button type="button" class="btn btn-primary">确定</button>
-                                      <button type="button" class="btn btn-default"  data-dismiss="modal">取消</button>
-                                       
-                                 </div>
-                                </div>
-                          </div>
-                       </div>
+                   <td>
+			          <div class="controls">
+			            <select class="input-xlarge" style="width:150px;" id="approveId">
+			              <option>请选择审批人</option>
+			              <#list stuffList as stuff>
+			              	<#if stuff.rank gt 0>
+			              		<option>${stuff.username!""}</option>
+			              	</#if>
+			              </#list>
+			            </select>
+          		     </div>
                    </td>
              </tr>
              <tr>
-                   <td style="width:10%;text-align:right;">提醒方式：</td>
-                   <td >
-                       <div>
-                  
-                             <label class="checkbox-inline">
-                                <input type="checkbox" id="inlineCheckbox2" value="option2"> 邮件
-                             </label>
-                        </div>
-                  </td>
+	             <td>
+			          <div class="controls">
+			            <button id="commitForm" class="btn btn-success"  onClick="clickHandler()" >提交</button>
+			          </div>
+		          </td>
              </tr>
            </tbody>
        </table>
-</@left>
+      
+</@common>
+<script type="text/javascript">
+	  
+	  function clickHandler(){
+		  var description= $('#description').val();
+	      var approveId=$('#approveId').val();
+	      var username=$('#username').val();
+	      if(description==null || description==""){
+	      	alert('申请理由不能为空', '友情提示！');
+	      	return
+	      }
+	      if(approveId=="请选择审批人"){
+	      	alert('请选择审批人', '友情提示！');
+	      	return
+	      }
+	     $.get(
+		     "/attendancemanage/nomal/leavareq/newApply.jhtml",
+		     {'description':description,'approveId':approveId,"username":username},
+		     function(msg){
+			     window.location.href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml?status=3"
+		     }
+		     );
+	     
+	 }
+	 		 
+</script>

@@ -91,17 +91,17 @@
 				</a>
 				<ul class="children collapse" id="leave">
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/nomal/leavareq/forwordApply.jhtml">
 							<span class="glyphicon glyphicon-pencil"></span> 申请
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
-							<span class="glyphicon glyphicon-pencil"></span> 我的申请
+						<a class="" href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml?status=3">
+							<span class="glyphicon glyphicon-pencil" ></span> 我的申请
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/nomal/leavareq/forwordMyApprove.jhtml?status=3">
 							<span class="glyphicon glyphicon-pencil"></span> 我的审批
 						</a>
 					</li>

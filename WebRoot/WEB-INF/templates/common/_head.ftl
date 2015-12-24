@@ -4,8 +4,11 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <link href="${base}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${base}/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <link href="${base}/css/index.css" rel="stylesheet">
+
 <script type="text/javascript" src="${base}/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${base}/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="${base}/js/jquery-1.8.2.min.js"></script>
 
 <#-- base href="${CPATH}" / -->

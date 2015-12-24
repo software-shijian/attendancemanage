@@ -1,5 +1,6 @@
 package com.attendance.manage.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,8 +65,26 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
 		return leaveRequestDao.updateByPrimaryKey(record);
 	}
 	
-	public List<LeaveRequest> selectApproveByID(int id){
-		List<LeaveRequest> approveList=leaveRequestDao.selectAll();
+	public List<LeaveRequest> selectApproveByID(HashMap<String,Object> paraMap){
+		List<LeaveRequest> approveList=leaveRequestDao.selectApproveByID(paraMap);
 		return approveList;
 	}
+	/**
+     * 申请
+     */
+    public void newApply(LeaveRequest leaveRequest){
+    	leaveRequestDao.insert(leaveRequest);
+    }
+    public List<LeaveRequest> findMyApplyByStuffId(HashMap<String,Object> paraMap){
+    	
+    	return leaveRequestDao.findMyApplyByStuffId(paraMap);
+    }
+    //查询我的申请各种状态数量
+   public HashMap<String,Integer> findMyApplyAllConut(Long id){
+	   return leaveRequestDao.findMyApplyAllConut(id);
+    }
+    //查询我的审批各种状态的数量
+   public HashMap<String,Integer> findMyApproveAllConut(Long id){
+	   return leaveRequestDao.findMyApproveAllConut(id);
+   }
 }
