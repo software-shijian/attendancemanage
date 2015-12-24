@@ -63,4 +63,9 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
 	public int updateByPrimaryKey(LeaveRequest record) {
 		return leaveRequestDao.updateByPrimaryKey(record);
 	}
+	
+	public List<LeaveRequest> selectApproveByID(int id){
+		List<LeaveRequest> approveList=leaveRequestDao.selectAll();
+		return approveList;
+	}
 }

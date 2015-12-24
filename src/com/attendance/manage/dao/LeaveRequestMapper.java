@@ -1,6 +1,7 @@
 package com.attendance.manage.dao;
 
 import com.attendance.manage.model.LeaveRequest;
+
 import java.util.List;
 
 public interface LeaveRequestMapper {
@@ -43,4 +44,6 @@ public interface LeaveRequestMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(LeaveRequest record);
+    
+    List<LeaveRequest> selectApproveByID(int id);
 }

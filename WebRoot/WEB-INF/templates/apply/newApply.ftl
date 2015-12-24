@@ -6,21 +6,19 @@
                    <td style="width:10%;text-align:right;">申请人：</td>
                    <td >杨刚</td>
               </tr>
-              <tr>
+         <!--     <tr>
                    <td style="width:10%;text-align:right;">申请部门：</td>
                    <td >技术部</td>
              </tr>
+             -->
              <tr>
                    <td style="width:10%;text-align:right;"><span style="color:#F00">*</span>申请内容：</td>
                    <td  >
                         <div class="form-group">
                          
-                          <textarea class="form-control" rows="5"></textarea>
+                          <textarea class="form-control" rows="7"></textarea>
                         </div>
-                        <div>
-                           <label class="sr-only" for="inputfile">文件输入</label>
-                           <input type="file" id="inputfile">
-                         </div>
+                  
                    </td>
              </tr>
              <tr>
@@ -65,9 +63,7 @@
                    <td style="width:10%;text-align:right;">提醒方式：</td>
                    <td >
                        <div>
-                             <label class="checkbox-inline">
-                                <input type="checkbox" id="inlineCheckbox1" value="option1"> 即时通讯
-                             </label>
+                  
                              <label class="checkbox-inline">
                                 <input type="checkbox" id="inlineCheckbox2" value="option2"> 邮件
                              </label>

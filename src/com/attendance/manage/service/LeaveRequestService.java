@@ -43,4 +43,6 @@ public interface LeaveRequestService {
      * @mbggenerated
      */
     int updateByPrimaryKey(LeaveRequest record);
+    
+    List<LeaveRequest> selectApproveByID(int id);
 }
