@@ -9,8 +9,8 @@
                   <li><a href="#">考勤记录</a></li>
                   <li class="active"><a href="#">请假管理</a></li>
                   <li><a href="/attendancemanage/nomal/leavareq/forwordApply.jhtml">申请</a></li>
-                  <li><a href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml">我的申请</a></li>
-                  <li><a href="/attendancemanage/nomal/leavareq/forwordMyApprove.jhtml">我的审批</a></li>
+                  <li><a href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml?status=3">我的申请</a></li>
+                  <li><a href="/attendancemanage/nomal/leavareq/forwordMyApprove.jhtml?status=3">我的审批</a></li>
                   <li class="active"><a href="#">系统管理</a></li>
                   <li><a href="#">XXXXX</a></li>
                   <li><a href="#">XXXXX</a></li>
