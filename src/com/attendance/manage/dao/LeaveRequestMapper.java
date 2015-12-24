@@ -2,6 +2,7 @@ package com.attendance.manage.dao;
 
 import com.attendance.manage.model.LeaveRequest;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface LeaveRequestMapper {
@@ -45,5 +46,12 @@ public interface LeaveRequestMapper {
      */
     int updateByPrimaryKey(LeaveRequest record);
     
-    List<LeaveRequest> selectApproveByID(int id);
+    List<LeaveRequest> selectApproveByID(HashMap<String,Object> paraMap);
+    
+    List<LeaveRequest> findMyApplyByStuffId(HashMap<String,Object> paraMap);
+    List<LeaveRequest> selectApproveByID(Long id);
+    //查询我的申请各种状态数量
+    HashMap<String,Integer> findMyApplyAllConut(Long id);
+    //查询我的审批各种状态的数量
+    HashMap<String,Integer> findMyApproveAllConut(Long id);
 }

@@ -47,5 +47,6 @@ public interface StuffMapper {
 	int updateByPrimaryKey(Stuff record);
 
 	Stuff findByUsername(String username);
-
+	
+	Stuff findUserInfo(String username);
 }
