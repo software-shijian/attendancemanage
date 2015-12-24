@@ -86,6 +86,10 @@ public class StuffServiceImpl implements StuffService {
 	public Stuff findByUsername(String username) {
 		return stuffDao.findByUsername(username);
 	}
+	
+	public Stuff findUserInfo(String username) {
+		return stuffDao.findByUsername(username);
+	}
 
 	@Transactional(readOnly = true)
 	public List<String> findAuthorities(Long id) {
@@ -106,4 +110,5 @@ public class StuffServiceImpl implements StuffService {
 
 		return authorities;
 	}
+
 }
