@@ -12,7 +12,7 @@
 	<div class="col-lg-12">
 		<div class="panel panel-default bk-bg-white">
 			<div class="panel-heading bk-bg-white">
-				<h3><i class="fa fa-table"></i><span class="break"></span>我的申请</h3>
+				<h3><i class="fa fa-table"></i><span class="break"></span>我的审批</h3>
 				<div style="float:right;margin-top:10px;margin-bottom:5px;">
  <button type="button" class="btn btn-default"  data-toggle="button" onClick="all_status(3);"> 所有(${statusMap.all_approve})</button>
  <button type="button" class="btn btn-default"  data-toggle="button" onClick="all_status(1);"> 同意(${statusMap.ok_approve})</button>
@@ -24,23 +24,23 @@
 					<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						<thead>
 							<tr>
-								  <th>序号</th>
-						          <th>申请类型</th>
-						          <th>申请内容</th>
-						          <th>申请时间</th>
-						          <th>审批人</th>
-						          <th>审批结果</th>
-						          <th>操作</th>
+								  <th style="text-align: -webkit-center;">序号</th>
+						          <th style="text-align: -webkit-center;">申请类型</th>
+						          <th style="text-align: -webkit-center;">申请内容</th>
+						          <th style="text-align: -webkit-center;">申请时间</th>
+						          <th style="text-align: -webkit-center;">审批人</th>
+						          <th style="text-align: -webkit-center;">审批结果</th>
+						          <th style="text-align: -webkit-center;">操作</th>
 							</tr>
 						</thead>   
 						<tbody>			
 						<#list approveList as approve>				
 								<tr>
 								<td>${approve_index?number+1}</td>
-								<td>${approve.type_id!""}</td>
+								<td>${approve.typeName!""}</td>
 								<td>${approve.description}</td>
-								<td>${approve.application_time!""}</td>
-								<td>${approve.last_handler!""}</td>
+								<td>${(approve.applicationTime?string("yyyy-MM-dd HH:mm"))!}</td>
+								<td>${approve.lastHandlerName!""}</td>
 								<td>
 									 <#if approve.status??>
 								          <#if approve.status==0>
@@ -54,9 +54,13 @@
 								</td>
 							
 								<td>
-									<a class="btn btn-info" href="table.html#">
-										<i class="fa fa-edit "></i>                                            
-									</a>
+									<button class="btn btn-info" href="" onclick="approve(${approve.id},1)">
+										       审批                                     
+									</button>
+									<button class="btn btn-info" onclick="approve(${approve.id},0)">
+										       详情                                  
+									</button>
+									
 								</td>
 							</tr>
 						</#list>
@@ -72,17 +76,22 @@
    			
 		
 		function all_status(para){
-		 var status=""; 
-		
-		 if(para==0){
-			 status="?status=0"
-		 }else if(para==1){
-		 	 status="?status=1"
-		 }else{
-		 	 status="?status=3"
-		 }
-	   	window.location.href="/attendancemanage/nomal/leavareq/forwordMyApprove.jhtml"+status
+			 var status=""; 
+			
+			 if(para==0){
+				 status="?status=0"
+			 }else if(para==1){
+			 	 status="?status=1"
+			 }else{
+			 	 status="?status=3"
+			 }
+		   	window.location.href="/attendancemanage/nomal/leavareq/forwordMyApprove.jhtml"+status
 	     
+	 	}
+	 	
+	 	
+	 	function approve(para,type){
+	 		window.location.href="/attendancemanage/nomal/leavareq/forwordApplyDetail.jhtml?leaveRequestId="+para+"&type="+type;
 	 	}
 </script>
 
