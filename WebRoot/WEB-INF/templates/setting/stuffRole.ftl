@@ -12,8 +12,7 @@
 						<div class="col-lg-12">
 							<div class="panel panel-default bk-bg-white">
 								<div class="panel-heading bk-bg-white">
-									<h3><i class="fa fa-table"></i><span class="break"></span>角色管理</h3>
-
+									<h3><i class="fa fa-table"></i><span class="break"></span> 员工角色设定</h3>
 								</div>
 								<div class="panel-heading bk-bg-white">
 									<div class="panel-actions">
@@ -25,25 +24,39 @@
 										<table class="table table-striped table-bordered bootstrap-datatable datatable">
 											<thead>
 												<tr>
-													<th>名字</th>
-													<th>描述</th>
-													<th>系统管理员</th>
+													<th> 姓名</th>
+													<th> 用户名</th>
 													<!--<th>状态</th>-->
-													<th>操作</th>
+													<th> 角色</th>
+													<th> 操作</th>
 												</tr>
 											</thead>   
 											<tbody>			
-											<#list rows as role> 				
-												<tr id="tr${role.id}">
-													<td>${role.name!""}</td>
-													<td>${role.description!""}</td>
+											<#list rows as roleAuthority> 				
+												<tr id="tr${roleAuthority.id}">
+													
+													<#list stuffs as stuff>											
+													<#if stuff.id==roleAuthority.stuffId>
 													<td>
-													<#if role.isSystem>
-													是
-													<#else>
-													否
-													</#if>													
+													${stuff.name}
 													</td>
+													<td>
+													${stuff.username}
+													</td>
+													</#if>	
+													</#list>	
+													
+													<td>
+													<#list roles as ro>											
+													<#if ro.id==roleAuthority.role>
+													
+													${ro.name}
+													</#if>	
+													</#list>	
+													</td>
+													
+													
+													
 													<!--<td>
 														<span class="label label-warning">Pending</span>
 													</td>-->
@@ -65,6 +78,7 @@
 						</div>					
 					</div>
 
+
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
@@ -83,28 +97,29 @@
          <form id="dataform" name="dataform">
              <table>
                                   <tr>
-                                    <th><span style="color:#F00">*</span> 角色名：</th>
+                                    <th><span style="color:#F00">*</span> 员工：</th>
                                     <th >
                                        <input type="hidden" id ="id" name="id">
-                                      <input type="text" id ="name" name="name" class="form-control">
+                                       <select class="form-control" id ="stuffId" name="stuffId">
+                                       <#list stuffs as stuff>											
+													<#if (stuff.rank>0)>
+													<option value ="${stuff.id}">${stuff.name}</option>
+													<#else>
+													<option value ="${stuff.id}">&emsp;----${stuff.name}</option>
+													</#if>
+													</#list>	
+									   </select>
                                        <input type="hidden"  id ="_method" name="_method">
                                     </th>
                                   </tr>
                                   <tr>
-                                    <th><span style="color:#F00">*</span> 系统管理员：</th>
+                                    <th><span style="color:#F00">*</span> 角色：</th>
                                     <th >
-                                    <select class="form-control" id ="isSystem" name="isSystem" >
-                                    <option value ="0">否</option>
-													<option value ="1">是</option>
-									 				
+                                    <select class="form-control" id ="role" name="role">										
+									   <#list roles as ro>
+													<option value ="${ro.id}">${ro.name}</option>
+									   </#list>	
 								    </select>
-                                    </th>
-                                  </tr>
-                                  <tr>
-                                    <th><span style="color:#F00">*</span> 描述：</th>
-                                    <th >
-                                    <input type="text" id ="description" name="description" class="form-control">
-                                    
                                     </th>
                                   </tr>
                                   
@@ -169,7 +184,7 @@ function update(obj){
 		$('#name').removeAttr("readonly");
 		$('#age').val("");
 		$('#name').val("");
-		$('#description').val("");
+		$('#gender').val("");
 		$('#days').val("");
 		$('#seniority').val("");
 		$('#id').val("");
@@ -204,7 +219,7 @@ function update(obj){
 function submitData(reqtype){
 	$('#_method').val(reqtype);
 	$.ajax({type:"post",
-	url:"/attendancemanage/setting/role/"+reqtype+".json",
+	url:"/attendancemanage/setting/stuffRole/"+reqtype+".json",
 	contentType: "application/x-www-form-urlencoded;charset=utf-8", 
 	data:$('#dataform').serialize(),
 	success: function(data){
@@ -221,7 +236,7 @@ function deleteData(obj){
 keyv=$('#todelete').val();
 //alert(keyv);
 $.ajax({type:"post",
-	url:"/attendancemanage/setting/role/delete.json",
+	url:"/attendancemanage/setting/stuffRole/delete.json",
 	contentType: "application/x-www-form-urlencoded; charset=utf-8",
 	data:{"id":keyv,"_method":"delete"},
 	success: function(data){
@@ -233,6 +248,6 @@ $.ajax({type:"post",
  }
  }); 
 }
-</script>
 
+</script>
 </@common>  

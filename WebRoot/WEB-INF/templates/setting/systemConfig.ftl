@@ -4,16 +4,14 @@
 		<link href="${base}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 		<link href="${base}/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />					
 		<link href="${base}/css/add-ons.min.css" rel="stylesheet" />
-	<script>
-	$(document).ready(function() {;
-   });
-	</script>
+		<link href="${base}/css/toastr/toastr.min.css" rel="stylesheet" />
+		<script src="${base}/js/toastr/toastr.min.js"></script>
+
 		<div class="row">		
 						<div class="col-lg-12">
 							<div class="panel panel-default bk-bg-white">
 								<div class="panel-heading bk-bg-white">
-									<h3><i class="fa fa-table"></i><span class="break"></span>角色管理</h3>
-
+									<h3><i class="fa fa-table"></i><span class="break"></span>系统设置</h3>
 								</div>
 								<div class="panel-heading bk-bg-white">
 									<div class="panel-actions">
@@ -25,25 +23,16 @@
 										<table class="table table-striped table-bordered bootstrap-datatable datatable">
 											<thead>
 												<tr>
-													<th>名字</th>
-													<th>描述</th>
-													<th>系统管理员</th>
-													<!--<th>状态</th>-->
-													<th>操作</th>
+													<th> 键名</th>
+													<th> 设定值</th>
+													<th> 操作</th>
 												</tr>
 											</thead>   
 											<tbody>			
-											<#list rows as role> 				
-												<tr id="tr${role.id}">
-													<td>${role.name!""}</td>
-													<td>${role.description!""}</td>
-													<td>
-													<#if role.isSystem>
-													是
-													<#else>
-													否
-													</#if>													
-													</td>
+											<#list rows as systemConfig> 				
+												<tr id="tr${systemConfig.sKey}">
+													<td>${systemConfig.sKey!""}</td>
+													<td>${systemConfig.sValue!""}</td>
 													<!--<td>
 														<span class="label label-warning">Pending</span>
 													</td>-->
@@ -65,6 +54,7 @@
 						</div>					
 					</div>
 
+
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
@@ -83,31 +73,18 @@
          <form id="dataform" name="dataform">
              <table>
                                   <tr>
-                                    <th><span style="color:#F00">*</span> 角色名：</th>
+                                    <th><span style="color:#F00">*</span>键名：</th>
                                     <th >
-                                       <input type="hidden" id ="id" name="id">
-                                      <input type="text" id ="name" name="name" class="form-control">
+                                       <input type="text" id ="sKey" name="sKey" class="form-control">
                                        <input type="hidden"  id ="_method" name="_method">
                                     </th>
                                   </tr>
                                   <tr>
-                                    <th><span style="color:#F00">*</span> 系统管理员：</th>
+                                    <th><span style="color:#F00">*</span>设定值：</th>
                                     <th >
-                                    <select class="form-control" id ="isSystem" name="isSystem" >
-                                    <option value ="0">否</option>
-													<option value ="1">是</option>
-									 				
-								    </select>
+                                       <input type="text"  id ="sValue" name="sValue" class="form-control">
                                     </th>
                                   </tr>
-                                  <tr>
-                                    <th><span style="color:#F00">*</span> 描述：</th>
-                                    <th >
-                                    <input type="text" id ="description" name="description" class="form-control">
-                                    
-                                    </th>
-                                  </tr>
-                                  
                                   
              </table>
          </form>
@@ -166,13 +143,9 @@ function update(obj){
 		var tds=$(obj).parent().parent().find('td');
 		if($(obj).hasClass("btn-minimize")){
 		$('.modal-title').text("新增");
-		$('#name').removeAttr("readonly");
-		$('#age').val("");
-		$('#name').val("");
-		$('#description').val("");
-		$('#days').val("");
-		$('#seniority').val("");
-		$('#id').val("");
+		$('#sKey').removeAttr("readonly");
+		$('#sKey').val("");
+		$('#sValue').val("");
 		$("#confirmSubmit").removeAttr("onclick");
 		$("#confirmSubmit").attr("onclick","submitData('post');");
 				//alert($('#dataform').serialize());
@@ -180,23 +153,9 @@ function update(obj){
 		$('.modal-title').text("编辑");
 		$("#confirmSubmit").removeAttr("onclick");
 		$("#confirmSubmit").attr("onclick","submitData('put');");
-		$('#name').attr("readonly","readonly");
-		var keyorid=$(obj).parent().parent().attr("id");
-		$('#id').val(keyorid.substring(2));
-		$('#name').val(tds.eq(0).text());
-		$('#days').val(tds.eq(1).text());
-		$('#seniority').val(tds.eq(2).text());
-		$('#age').val(tds.eq(3).text());
-		$('#gender').val(tds.eq(4).text().substring(0,1));
-		if(isNaN(tds.eq(2).text())){
-		$('#seniority').val("");
-		}
-		if(tds.eq(4).text().substring(0,1)=="3"){
-		$('#gender').val("");
-		}
-		if(tds.eq(3).text()){
-		$('#age').val("");
-		}
+		$('#sKey').attr("readonly","readonly");
+		$('#sKey').val(tds.eq(0).text());
+		$('#sValue').val(tds.eq(1).text());
 		}
 		$('#myModal').modal('show');
 	}
@@ -204,8 +163,7 @@ function update(obj){
 function submitData(reqtype){
 	$('#_method').val(reqtype);
 	$.ajax({type:"post",
-	url:"/attendancemanage/setting/role/"+reqtype+".json",
-	contentType: "application/x-www-form-urlencoded;charset=utf-8", 
+	url:"/attendancemanage/setting/systemConfig/"+reqtype+".json",
 	data:$('#dataform').serialize(),
 	success: function(data){
 	//alert("sdf");
@@ -221,9 +179,8 @@ function deleteData(obj){
 keyv=$('#todelete').val();
 //alert(keyv);
 $.ajax({type:"post",
-	url:"/attendancemanage/setting/role/delete.json",
-	contentType: "application/x-www-form-urlencoded; charset=utf-8",
-	data:{"id":keyv,"_method":"delete"},
+	url:"/attendancemanage/setting/systemConfig/delete.json",
+	data:{"key":keyv,"_method":"delete"},
 	success: function(data){
 	//alert("sdf");
  if(data=='1'){
@@ -233,6 +190,6 @@ $.ajax({type:"post",
  }
  }); 
 }
-</script>
 
+</script>
 </@common>  

@@ -12,8 +12,7 @@
 						<div class="col-lg-12">
 							<div class="panel panel-default bk-bg-white">
 								<div class="panel-heading bk-bg-white">
-									<h3><i class="fa fa-table"></i><span class="break"></span>角色管理</h3>
-
+									<h3><i class="fa fa-table"></i><span class="break"></span> 权限设定</h3>
 								</div>
 								<div class="panel-heading bk-bg-white">
 									<div class="panel-actions">
@@ -25,30 +24,31 @@
 										<table class="table table-striped table-bordered bootstrap-datatable datatable">
 											<thead>
 												<tr>
-													<th>名字</th>
-													<th>描述</th>
-													<th>系统管理员</th>
+													<th>角色</th>
+													<th>权限</th>
 													<!--<th>状态</th>-->
 													<th>操作</th>
 												</tr>
 											</thead>   
 											<tbody>			
-											<#list rows as role> 				
-												<tr id="tr${role.id}">
-													<td>${role.name!""}</td>
-													<td>${role.description!""}</td>
+											<#list rows as roleAuthority> 				
+												<tr id="tr${roleAuthority.id}">
 													<td>
-													<#if role.isSystem>
-													是
-													<#else>
-													否
-													</#if>													
+													<#list roles as ro>											
+													<#if ro.id=roleAuthority.role>
+													
+													${ro.name}
+													</#if>	
+													</#list>	
 													</td>
+													
+													<td>${roleAuthority.authorities!""}</td>
+													
 													<!--<td>
 														<span class="label label-warning">Pending</span>
 													</td>-->
 													<td>
-														<a class="btn btn-info" href="javascript:void(0)" onclick="update(this)">
+													<a class="btn btn-info" href="javascript:void(0)" onclick="update(this)">
 															<i class="fa fa-edit " ></i>                                            
 														</a>
 														<a class="btn btn-danger" href="javascript:void(0)" onclick="showDlg(this)">
@@ -86,28 +86,23 @@
                                     <th><span style="color:#F00">*</span> 角色名：</th>
                                     <th >
                                        <input type="hidden" id ="id" name="id">
-                                      <input type="text" id ="name" name="name" class="form-control">
+                                     <select class="form-control" id ="role" name="role">
+                                       <#list roles as role>											
+													
+													<option value ="${role.id}">${role.name}</option>
+													
+										</#list>	
+									   </select>
                                        <input type="hidden"  id ="_method" name="_method">
                                     </th>
                                   </tr>
                                   <tr>
-                                    <th><span style="color:#F00">*</span> 系统管理员：</th>
+                                    <th><span style="color:#F00">*</span> 权限名：</th>
                                     <th >
-                                    <select class="form-control" id ="isSystem" name="isSystem" >
-                                    <option value ="0">否</option>
-													<option value ="1">是</option>
-									 				
-								    </select>
+                                     <input type="text" id ="authorities" name="authorities" class="form-control">
                                     </th>
                                   </tr>
-                                  <tr>
-                                    <th><span style="color:#F00">*</span> 描述：</th>
-                                    <th >
-                                    <input type="text" id ="description" name="description" class="form-control">
-                                    
-                                    </th>
-                                  </tr>
-                                  
+                                 
                                   
              </table>
          </form>
@@ -167,9 +162,9 @@ function update(obj){
 		if($(obj).hasClass("btn-minimize")){
 		$('.modal-title').text("新增");
 		$('#name').removeAttr("readonly");
-		$('#age').val("");
+		$('#authorities').val("");
 		$('#name').val("");
-		$('#description').val("");
+		$('#gender').val("");
 		$('#days').val("");
 		$('#seniority').val("");
 		$('#id').val("");
@@ -204,7 +199,7 @@ function update(obj){
 function submitData(reqtype){
 	$('#_method').val(reqtype);
 	$.ajax({type:"post",
-	url:"/attendancemanage/setting/role/"+reqtype+".json",
+	url:"/attendancemanage/setting/roleAuthority/"+reqtype+".json",
 	contentType: "application/x-www-form-urlencoded;charset=utf-8", 
 	data:$('#dataform').serialize(),
 	success: function(data){
@@ -221,7 +216,7 @@ function deleteData(obj){
 keyv=$('#todelete').val();
 //alert(keyv);
 $.ajax({type:"post",
-	url:"/attendancemanage/setting/role/delete.json",
+	url:"/attendancemanage/setting/roleAuthority/delete.json",
 	contentType: "application/x-www-form-urlencoded; charset=utf-8",
 	data:{"id":keyv,"_method":"delete"},
 	success: function(data){
@@ -234,5 +229,4 @@ $.ajax({type:"post",
  }); 
 }
 </script>
-
 </@common>  

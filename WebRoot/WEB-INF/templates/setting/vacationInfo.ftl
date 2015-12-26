@@ -12,8 +12,7 @@
 						<div class="col-lg-12">
 							<div class="panel panel-default bk-bg-white">
 								<div class="panel-heading bk-bg-white">
-									<h3><i class="fa fa-table"></i><span class="break"></span>角色管理</h3>
-
+									<h3><i class="fa fa-table"></i><span class="break"></span>假期配置</h3>
 								</div>
 								<div class="panel-heading bk-bg-white">
 									<div class="panel-actions">
@@ -26,24 +25,23 @@
 											<thead>
 												<tr>
 													<th>名字</th>
-													<th>描述</th>
-													<th>系统管理员</th>
+													<th>天数</th>
+													<th>工龄</th>
+													<th>年龄</th>
+													<th>性别</th>
 													<!--<th>状态</th>-->
 													<th>操作</th>
 												</tr>
 											</thead>   
 											<tbody>			
-											<#list rows as role> 				
-												<tr id="tr${role.id}">
-													<td>${role.name!""}</td>
-													<td>${role.description!""}</td>
-													<td>
-													<#if role.isSystem>
-													是
-													<#else>
-													否
-													</#if>													
-													</td>
+											<#list rows as vacationInfo> 				
+												<tr id="tr${vacationInfo.id}">
+													<td>${vacationInfo.name!""}</td>
+													<td>${vacationInfo.days!""}</td>
+													<td><#if vacationInfo.seniority??>${vacationInfo.seniority!""}<#else>不限</#if></td>
+													<td><#if vacationInfo.age??>${vacationInfo.age!""}<#else>不限</#if></td>
+													<td><#if vacationInfo.gender??><label style="display:none">${vacationInfo.gender}</label><#if vacationInfo.gender==0>男<#else>女</#if><#else><label style="display:none">3</label>不限</#if></td>
+													
 													<!--<td>
 														<span class="label label-warning">Pending</span>
 													</td>-->
@@ -64,7 +62,6 @@
 							</div>
 						</div>					
 					</div>
-
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
@@ -83,31 +80,46 @@
          <form id="dataform" name="dataform">
              <table>
                                   <tr>
-                                    <th><span style="color:#F00">*</span> 角色名：</th>
+                                    <th><span style="color:#F00">*</span> 假日名：</th>
                                     <th >
                                        <input type="hidden" id ="id" name="id">
-                                      <input type="text" id ="name" name="name" class="form-control">
+                                       <input type="text" id ="name" name="name" class="form-control">
                                        <input type="hidden"  id ="_method" name="_method">
                                     </th>
                                   </tr>
                                   <tr>
-                                    <th><span style="color:#F00">*</span> 系统管理员：</th>
+                                    <th><span style="color:#F00">*</span> 天数：</th>
                                     <th >
-                                    <select class="form-control" id ="isSystem" name="isSystem" >
-                                    <option value ="0">否</option>
-													<option value ="1">是</option>
-									 				
-								    </select>
+                                       <input type="text"  id ="days" name="days" class="form-control">
                                     </th>
                                   </tr>
                                   <tr>
-                                    <th><span style="color:#F00">*</span> 描述：</th>
+                                    <th><span style="color:#F00"> </span> 工龄：</th>
                                     <th >
-                                    <input type="text" id ="description" name="description" class="form-control">
-                                    
+                                       <input type="text"  id ="seniority" name="seniority" class="form-control">
                                     </th>
                                   </tr>
-                                  
+                                  <tr>
+                                    <th><span style="color:#F00"> </span> 年龄：</th>
+                                    <th >
+                                       <input type="text"  id ="age" name="age" class="form-control">
+                                    </th>
+                                  </tr>
+                                  <tr>
+                                    <th><span style="color:#F00"> </span> 性别：</th>
+                                    <th >
+                                       <input type="text"  id ="gender" name="gender" class="form-control">
+                                       
+                                      <th> 
+                                    </th>
+                                  </tr>
+                                  <tr>
+                                  <th><span style="color:#F00">*注意</span> </th>
+                                    <th >
+                                       <span>工龄，年龄栏请填写具体数字！性别栏男请填0，女请填1！否则留空！</span>
+                                      <th> 
+                                    </th>
+                                  </tr>
                                   
              </table>
          </form>
@@ -169,7 +181,7 @@ function update(obj){
 		$('#name').removeAttr("readonly");
 		$('#age').val("");
 		$('#name').val("");
-		$('#description').val("");
+		$('#gender').val("");
 		$('#days').val("");
 		$('#seniority').val("");
 		$('#id').val("");
@@ -204,7 +216,7 @@ function update(obj){
 function submitData(reqtype){
 	$('#_method').val(reqtype);
 	$.ajax({type:"post",
-	url:"/attendancemanage/setting/role/"+reqtype+".json",
+	url:"/attendancemanage/setting/vacationInfo/"+reqtype+".json",
 	contentType: "application/x-www-form-urlencoded;charset=utf-8", 
 	data:$('#dataform').serialize(),
 	success: function(data){
@@ -221,7 +233,7 @@ function deleteData(obj){
 keyv=$('#todelete').val();
 //alert(keyv);
 $.ajax({type:"post",
-	url:"/attendancemanage/setting/role/delete.json",
+	url:"/attendancemanage/setting/vacationInfo/delete.json",
 	contentType: "application/x-www-form-urlencoded; charset=utf-8",
 	data:{"id":keyv,"_method":"delete"},
 	success: function(data){
@@ -233,6 +245,7 @@ $.ajax({type:"post",
  }
  }); 
 }
+
 </script>
 
 </@common>  

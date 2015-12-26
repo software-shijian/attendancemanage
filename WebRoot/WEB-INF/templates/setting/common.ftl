@@ -219,6 +219,39 @@
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
 	</script>	
+		<script>
+function centerModals(){
+    $('.modal').each(function(i){
+        var $clone = $(this).clone().css('display', 'block').appendTo('body');
+        var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
+        top = top > 0 ? top : 0;
+        $clone.remove();
+        $(this).find('.modal-content').css("margin-top", top);
+    });
+}
+$(document).ready(function() {
+$('.modal').on('show.bs.modal', centerModals);
+$(window).on('resize', centerModals);
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-bottom-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "1000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+ });
+	</script>
 </body>
 
 
