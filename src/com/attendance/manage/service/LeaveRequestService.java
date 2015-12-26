@@ -58,4 +58,6 @@ public interface LeaveRequestService {
     HashMap<String,Integer> findMyApplyAllConut(Long id);
     //查询我的审批各种状态的数量
     HashMap<String,Integer> findMyApproveAllConut(Long id);
+    
+    HashMap<String,Object> findApplyDetailByID(Long id);
 }
