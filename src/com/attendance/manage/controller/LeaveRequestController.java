@@ -1,5 +1,6 @@
 package com.attendance.manage.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.attendance.manage.model.LeaveRequest;
+import com.attendance.manage.model.LeaveType;
 import com.attendance.manage.model.Stuff;
 import com.attendance.manage.service.CheckInfoService;
 import com.attendance.manage.service.LeaveRequestService;
+import com.attendance.manage.service.LeaveTypeService;
 import com.attendance.manage.service.StuffService;
 
 @Scope("prototype")
@@ -31,6 +34,8 @@ public class LeaveRequestController {
 	private LeaveRequestService leaveRequestServiceImpl;
 	@Autowired
 	private StuffService stuffServiceImpl;
+	@Autowired
+	private LeaveTypeService leaveTypeServiceImpl;
 
 	/**
 	 * 测试方法,HelloWord
@@ -64,10 +69,13 @@ public class LeaveRequestController {
 			HttpServletResponse response) throws Exception {
 		//员工信息
 		Stuff stuff=stuffServiceImpl.findUserInfo("ling");
+		//请假类型信息
+		List<LeaveType> leaveTypeList=leaveTypeServiceImpl.selectAll();
 		//经理信息
 		List<Stuff> stuffList=stuffServiceImpl.selectAll();
 		model.addAttribute("stuff", stuff);
 		model.addAttribute("stuffList", stuffList);
+		model.addAttribute("leaveTypeList", leaveTypeList);
 		return "/apply/newApply";
 
 	}
@@ -82,6 +90,7 @@ public class LeaveRequestController {
 	 */
 	@RequestMapping(value = "/newApply", method = RequestMethod.GET)
 	public String newApply(String description,String approveId,String username,
+			String datetimepicker1,String datetimepicker2,String leaveTypeId,
 			Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		LeaveRequest leaveRequest=new LeaveRequest();
@@ -89,12 +98,13 @@ public class LeaveRequestController {
 		leaveRequest.setLastHandler(stuffServiceImpl.findByUsername(approveId).getId());
 		leaveRequest.setApplicationTime(new Date());
 		leaveRequest.setCreateDate(new Date());
-		leaveRequest.setBeginTime(new Date());
-		leaveRequest.setEndTime(new Date());
+		
+		leaveRequest.setBeginTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse((datetimepicker1.replace("/", "-")+":00")));
+		leaveRequest.setEndTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetimepicker1.replace("/", "-")+":00"));
 		leaveRequest.setStatus(0);
 		leaveRequest.setModifyDate(new Date());
 		leaveRequest.setStuffId(stuffServiceImpl.findByUsername(username).getId());
-		leaveRequest.setTypeId(Long.parseLong("1"));
+		leaveRequest.setTypeId(Long.parseLong(leaveTypeId));
 		leaveRequestServiceImpl.newApply(leaveRequest);
 		return null;
 
@@ -154,6 +164,47 @@ public class LeaveRequestController {
 
 	}
 	
+	/**
+	 * 详情和审批页面
+	 */
+	/**
+	 * 跳转到我的审批页面
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/forwordApplyDetail", method = RequestMethod.GET)
+	public String forwordApplyDetail(int type,long leaveRequestId,Model model, HttpServletRequest request,
+			HttpServletResponse response,HttpSession session) throws Exception {
+		
+		HashMap<String,Object> appylMap=leaveRequestServiceImpl.findApplyDetailByID(leaveRequestId);
+		//获取申请信息
+		if(type==1){
+			model.addAttribute("type", 1);
+		}else if(type==0){
+			model.addAttribute("type", 0);
+		}else{
+			model.addAttribute("type", 2);
+		}
+		model.addAttribute("appylMap", appylMap);
+		return "/apply/detailApply";
+
+	}
+	/**
+	 * 审批
+	 */
+	@RequestMapping(value = "/approveApply", method = RequestMethod.GET)
+	public String approveApply(long apply_id,int status,
+			Model model, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		LeaveRequest leaveRequest=leaveRequestServiceImpl.selectByPrimaryKey(apply_id);
+		leaveRequest.setStatus(status);
+		leaveRequestServiceImpl.updateByPrimaryKey(leaveRequest);
+		return null;
+
+	}
 
 	
 
