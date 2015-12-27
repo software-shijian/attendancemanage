@@ -96,6 +96,7 @@ public class LeaveRequestController {
 		LeaveRequest leaveRequest=new LeaveRequest();
 		leaveRequest.setDescription(description);
 		leaveRequest.setLastHandler(stuffServiceImpl.findByUsername(approveId).getId());
+		leaveRequest.setHandlerHistory(approveId);
 		leaveRequest.setApplicationTime(new Date());
 		leaveRequest.setCreateDate(new Date());
 		
@@ -178,8 +179,11 @@ public class LeaveRequestController {
 	@RequestMapping(value = "/forwordApplyDetail", method = RequestMethod.GET)
 	public String forwordApplyDetail(int type,long leaveRequestId,Model model, HttpServletRequest request,
 			HttpServletResponse response,HttpSession session) throws Exception {
-		
+		//请假申请
 		HashMap<String,Object> appylMap=leaveRequestServiceImpl.findApplyDetailByID(leaveRequestId);
+		//获取审批人
+		//经理信息
+		List<Stuff> stuffList=stuffServiceImpl.selectAll();
 		//获取申请信息
 		if(type==1){
 			model.addAttribute("type", 1);
@@ -189,6 +193,7 @@ public class LeaveRequestController {
 			model.addAttribute("type", 2);
 		}
 		model.addAttribute("appylMap", appylMap);
+		model.addAttribute("stuffList", stuffList);
 		return "/apply/detailApply";
 
 	}
@@ -196,11 +201,17 @@ public class LeaveRequestController {
 	 * 审批
 	 */
 	@RequestMapping(value = "/approveApply", method = RequestMethod.GET)
-	public String approveApply(long apply_id,int status,
+	public String approveApply(long apply_id,int approve_status,String approveId,
 			Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		LeaveRequest leaveRequest=leaveRequestServiceImpl.selectByPrimaryKey(apply_id);
-		leaveRequest.setStatus(status);
+		
+		if(approve_status==403){
+			leaveRequest.setHandlerHistory(leaveRequest.getHandlerHistory()+";"+approveId);
+			leaveRequest.setLastHandler(stuffServiceImpl.findByUsername(approveId).getId());
+		}else{
+			leaveRequest.setStatus(approve_status);
+		}
 		leaveRequestServiceImpl.updateByPrimaryKey(leaveRequest);
 		return null;
 
