@@ -28,6 +28,7 @@
     <mapper resource="com/attendance/manage/dao/impl/DepartmentMapper.xml"/>
     <mapper resource="com/attendance/manage/dao/impl/LeaveRequestMapper.xml"/>
     <mapper resource="com/attendance/manage/dao/impl/LeaveTypeMapper.xml"/>
+     <mapper resource="com/attendance/manage/dao/impl/OutRequestMapper.xml"/>
     <mapper resource="com/attendance/manage/dao/impl/OutTypeMapper.xml"/>
     <mapper resource="com/attendance/manage/dao/impl/RoleAuthorityMapper.xml"/>
     <mapper resource="com/attendance/manage/dao/impl/RoleMapper.xml"/>

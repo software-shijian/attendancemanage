@@ -18,7 +18,7 @@
 <link href="${base}/css/bootstrap-table.css" rel="stylesheet">
 
 <link href="${base}/css/styles.css" rel="stylesheet">
-<script src="${base}/js/jquery/jquery.min.js"></script>
+
 
 
 <!--[if lt IE 9]>
@@ -26,6 +26,9 @@
 <script src="${base}/js/html5shiv.js"></script>
 
 <script src="${base}/js/respond.min.js"></script>
+<script type="text/javascript">
+	
+</script>
 
 <![endif]-->
 
@@ -186,7 +189,8 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active" id="tabName"></li>
+				<li id="tabName"></li>
+			
 			</ol>
 		</div><!--/.row-->	
 		
@@ -194,14 +198,11 @@
 		
 	</div><!--/.main-->
 
-	<script src="${base}/js/jquery-1.11.1.min.js"></script>
-
 	<script src="${base}/js/bootstrap.min.js"></script>
 
 	<script src="${base}/js/chart.min.js"></script>
 	<script src="${base}/js/chart-data.js"></script>
 	<script src="${base}/js/easypiechart.js"></script>
-	<script src="${base}/js/easypiechart-data.js"></script>
 	<script src="${base}/js/bootstrap-datepicker.js"></script>
 	<script src="${base}/js/bootstrap-table.js"></script>
 	<script>

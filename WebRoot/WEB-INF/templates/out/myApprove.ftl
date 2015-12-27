@@ -6,14 +6,14 @@
 <link href="${base}/css/add-ons.min.css" rel="stylesheet" />
 	<script type="text/javascript">
 		$().ready(function(){
-			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApprove.jhtml?status=3'>我的请假审批</a>");
-		})
-	</script>
+			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApprove.jhtml?status=3'>我的外出审批</a>");
+		})	
+</script>
 <div class="row">		
 	<div class="col-lg-12">
 		<div class="panel panel-default bk-bg-white">
 			<div class="panel-heading bk-bg-white">
-				<h3><i class="fa fa-table"></i><span class="break"></span>我的请假审批</h3>
+				<h3><i class="fa fa-table"></i><span class="break"></span>我的外出审批</h3>
 				<div style="float:right;margin-top:10px;margin-bottom:5px;">
  <button type="button" class="btn btn-default"  data-toggle="button" onClick="all_status(3);"> 所有(${statusMap.all_approve})</button>
  <button type="button" class="btn btn-default"  data-toggle="button" onClick="all_status(1);"> 同意(${statusMap.ok_approve})</button>
@@ -92,13 +92,13 @@
 			 }else{
 			 	 status="?status=3"
 			 }
-		   	window.location.href="/attendancemanage/nomal/leavareq/forwordMyApprove.jhtml"+status
+		   	window.location.href="/attendancemanage/nomal/out/forwordMyApprove.jhtml"+status
 	     
 	 	}
 	 	
 	 	
 	 	function approve(para,type){
-	 		window.location.href="/attendancemanage/nomal/leavareq/forwordApplyDetail.jhtml?leaveRequestId="+para+"&type="+type;
+	 		window.location.href="/attendancemanage/nomal/out/forwordApplyDetail.jhtml?leaveRequestId="+para+"&type="+type;
 	 	}
 </script>
 

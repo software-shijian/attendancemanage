@@ -5,16 +5,17 @@
 <script type="text/javascript">
 	$().ready(function(){
 		<#if type==2>
-			$("#tabName").append("<a href='/attendancemanage/nomal/leavareq/forwordMyApply.jhtml?status=3'>我的请假申请</a>><a href='#'>请假申请详情</a>");
+			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApply.jhtml?status=3'>我的外出申请</a>><a href='#'>外出申请详情</a>");
 		</#if>
 		<#if type==0>
-			$("#tabName").append("<a href='/attendancemanage/nomal/leavareq/forwordMyApprove.jhtml?status=3'>我的请假审批</a>><a href='#'>请假申请详情</a>");
+			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApprove.jhtml?status=3'>我的外出审批</a>><a href='#'>外出申请详情</a>");
 		</#if>
 		<#if type==1>
-			$("#tabName").append("<a href='/attendancemanage/nomal/leavareq/forwordMyApprove.jhtml?status=3'>我的请假审批</a>><a href='#'>请假申请审批</a>");
+			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApprove.jhtml?status=3'>我的外出审批</a>><a href='#'>外出申请审批</a>");
 		</#if>
 	})
 </script>
+
 <@common>
        <table class="table" style="margin-top:45px;">
        	  <input type="hidden" id="apply_id" value="${appylMap.id!""}"/>
@@ -158,10 +159,10 @@
 	      	return
 	      }
 	     $.get(
-		     "/attendancemanage/nomal/leavareq/approveApply.jhtml",
+		     "/attendancemanage/nomal/out/approveApply.jhtml",
 		     {'apply_id':apply_id,'approve_status':approve_status,'approveId':approveId},
 		     function(msg){
-			     window.location.href="/attendancemanage/nomal/leavareq/forwordMyApprove.jhtml?status=3";
+			     window.location.href="/attendancemanage/nomal/out/forwordMyApprove.jhtml?status=3";
 		     }
 		     );
 	     
@@ -169,14 +170,15 @@
 	 
 	 function returnPage(){
 	 	if(${type}==2){
-	 		window.location.href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml?status=3";
+	 		window.location.href="/attendancemanage/nomal/out/forwordMyApply.jhtml?status=3";
 	 	}else{
-	 	 	window.location.href="/attendancemanage/nomal/leavareq/forwordMyApprove.jhtml?status=3";
+	 	 	window.location.href="/attendancemanage/nomal/out/forwordMyApprove.jhtml?status=3";
 	 	}
 	 }
 	 
 	 $('#approve_status').change(function(){ 
-		var p1=$(this).children('option:selected').val();
+		var p1=$(this).children('option:selected').val();//这就是selected的值 
+
 		if(p1==403){
 			$('#selectApprove').css('display', '');
 		}else{

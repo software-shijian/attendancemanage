@@ -101,6 +101,8 @@ public class LeaveRequest {
     private Long lastHandler;
     private String lastHandlerName;
     
+    private String handlerHistory;
+    
 
     public String getLastHandlerName() {
 		return lastHandlerName;
@@ -373,4 +375,14 @@ public class LeaveRequest {
     public void setLastHandler(Long lastHandler) {
         this.lastHandler = lastHandler;
     }
+
+	public String getHandlerHistory() {
+		return handlerHistory;
+	}
+
+	public void setHandlerHistory(String handlerHistory) {
+		this.handlerHistory = handlerHistory;
+	}
+    
+    
 }

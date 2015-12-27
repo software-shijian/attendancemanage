@@ -4,7 +4,7 @@
 <script src="${base}/js/jquery.datetimepicker.js"></script>
 <script type="text/javascript">
 	$().ready(function(){
-		$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordApply.jhtml'>新建请假申请</a>");
+		$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordApply.jhtml'>新建外出申请</a>");
 	})
 </script>
 <@common>
@@ -21,8 +21,8 @@
 			          <div class="controls">
 			            <select class="input-xlarge" style="width:150px;" id="leaveTypeId">
 			              <option>请选择申请类型</option>
-			              <#list leaveTypeList as leaveType>	              	
-			              		<option value="${leaveType.id}">${leaveType.name}</option>
+			              <#list outTypeList as outType>	              	
+			              		<option value="${outType.id}">${outType.name}</option>
 			              </#list>
 			            </select>
 	      		     </div>
@@ -33,11 +33,11 @@
                    <td >${stuff.depart!""}</td>
              </tr>
               <tr>
-                   <td style="width:13%;text-align:right;">请假开始时间：</td>
+                   <td style="width:13%;text-align:right;">外出开始时间：</td>
                    <td ><input type="text"  id="datetimepicker1"/></td>
              </tr>
              <tr>
-                   <td style="width:10%;text-align:right;">请假结束时间：</td>
+                   <td style="width:10%;text-align:right;">外出结束时间：</td>
                    <td ><input type="text"  id="datetimepicker2"/></td>
              </tr>
              <tr>
@@ -115,15 +115,14 @@
 	      	return
 	      }
 	     $.get(
-		     "/attendancemanage/nomal/leavareq/newApply.jhtml",
+		     "/attendancemanage/nomal/out/newApply.jhtml",
 		     {'description':description,'approveId':approveId,"username":username,"datetimepicker1":datetimepicker1,"datetimepicker2":datetimepicker2,"leaveTypeId":leaveTypeId},
 		     function(msg){
-			     window.location.href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml?status=3"
+			     window.location.href="/attendancemanage/nomal/out/forwordMyApply.jhtml?status=3"
 		     }
 		     );
 	     
 	 }
-	
 	$('#datetimepicker1').datetimepicker();
 	$('#datetimepicker2').datetimepicker();
 
