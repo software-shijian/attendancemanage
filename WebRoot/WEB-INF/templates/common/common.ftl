@@ -18,6 +18,19 @@
 <link href="${base}/css/bootstrap-table.css" rel="stylesheet">
 
 <link href="${base}/css/styles.css" rel="stylesheet">
+
+
+<link href="${base}/datatables/jquery-datatables-bs3/css/datatables.css" rel="stylesheet" />
+<link href="${base}/datatables/select2.css" rel="stylesheet" />
+<link href="${base}/datatables/font-awesome.min.css" rel="stylesheet" />
+
+	
+<!-- datatables -->
+<script src="${base}/datatables/jquery-datatables/media/js/jquery.dataTables.js"></script>
+<script src="${base}/datatables/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+<script src="${base}/datatables/jquery-datatables-bs3/js/datatables.js"></script>
+<script src="${base}/datatables/table-advanced.js"></script>
+<script src="${base}/datatables/select2.js"></script>
 <script src="${base}/js/jquery/jquery.min.js"></script>
 
 

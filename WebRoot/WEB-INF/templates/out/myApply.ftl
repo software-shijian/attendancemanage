@@ -1,9 +1,5 @@
-<#include "../common/common.ftl"/>
+<#include "../common/_common1.ftl"/>
 <@common>
-<link href="${base}/vendor/skycons/css/skycons.css" rel="stylesheet" />
-<link href="${base}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-<link href="${base}/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />				
-<link href="${base}/css/add-ons.min.css" rel="stylesheet" />
 	<script type="text/javascript">
 		$().ready(function(){
 			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApply.jhtml?status=3'>我的外出申请</a>");
@@ -22,8 +18,8 @@
 </div>
 			</div>
 			<div class="panel-body">
-				<div class="table-responsive">	
-					<table class="table table-striped table-bordered bootstrap-datatable datatable">
+				<div class="panel-body">	
+					<table class="table table-bordered table-striped mb-none" id="datatable-details">
 						<thead>
 							<tr>
 								  <th>序号</th>
@@ -70,8 +66,7 @@
 						</#if>
 						</tbody>
 					</table>
-					<#include "../common/querypage.ftl" />
-					<@paginate currentPage=1 totalPage=5 actionUrl="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml?status=3" />
+					
 				</div>
 			</div>
 		</div>
