@@ -15,46 +15,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import com.attendance.manage.model.LeaveRequest;
-import com.attendance.manage.model.LeaveType;
+import com.attendance.manage.model.OutRequest;
+import com.attendance.manage.model.OutType;
 import com.attendance.manage.model.Stuff;
 import com.attendance.manage.service.CheckInfoService;
-import com.attendance.manage.service.LeaveRequestService;
-import com.attendance.manage.service.LeaveTypeService;
+import com.attendance.manage.service.OutRequestService;
+import com.attendance.manage.service.OutTypeService;
 import com.attendance.manage.service.StuffService;
 
 @Scope("prototype")
 @Controller
-@RequestMapping("/nomal/leavareq")
-public class LeaveRequestController {
+@RequestMapping("/nomal/out")
+public class OutRequestController {
 	@Autowired
 	private CheckInfoService checkInfoServiceImpl;
 	@Autowired
-	private LeaveRequestService leaveRequestServiceImpl;
+	private OutRequestService outRequestServiceImpl;
 	@Autowired
 	private StuffService stuffServiceImpl;
 	@Autowired
-	private LeaveTypeService leaveTypeServiceImpl;
+	private OutTypeService outTypeServiceImpl;
 
-	/**
-	 * 测试方法,HelloWord
-	 * 
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String getProducts(Model model, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-
-		model.addAttribute("name", checkInfoServiceImpl.selectAll().get(0)
-				.getCheckTime());
-
-		return "product/list";
-
-	}
 	
 	/**
 	 * 跳转到新建申请页面
@@ -70,13 +51,13 @@ public class LeaveRequestController {
 		//员工信息
 		Stuff stuff=stuffServiceImpl.findUserInfo("ling");
 		//请假类型信息
-		List<LeaveType> leaveTypeList=leaveTypeServiceImpl.selectAll();
+		List<OutType> outTypeList=outTypeServiceImpl.selectAll();
 		//经理信息
 		List<Stuff> stuffList=stuffServiceImpl.selectAll();
 		model.addAttribute("stuff", stuff);
 		model.addAttribute("stuffList", stuffList);
-		model.addAttribute("leaveTypeList", leaveTypeList);
-		return "/apply/newApply";
+		model.addAttribute("outTypeList", outTypeList);
+		return "/out/newApply";
 
 	}
 	
@@ -93,20 +74,20 @@ public class LeaveRequestController {
 			String datetimepicker1,String datetimepicker2,String leaveTypeId,
 			Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		LeaveRequest leaveRequest=new LeaveRequest();
-		leaveRequest.setDescription(description);
-		leaveRequest.setLastHandler(stuffServiceImpl.findByUsername(approveId).getId());
-		leaveRequest.setHandlerHistory(approveId);
-		leaveRequest.setApplicationTime(new Date());
-		leaveRequest.setCreateDate(new Date());
+		OutRequest outRequest=new OutRequest();
+		outRequest.setDescription(description);
+		outRequest.setLastHandler(stuffServiceImpl.findByUsername(approveId).getId());
+		outRequest.setHandlerHistory(approveId);
+		outRequest.setApplicationTime(new Date());
+		outRequest.setCreateDate(new Date());
 		
-		leaveRequest.setBeginTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse((datetimepicker1.replace("/", "-")+":00")));
-		leaveRequest.setEndTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetimepicker1.replace("/", "-")+":00"));
-		leaveRequest.setStatus(0);
-		leaveRequest.setModifyDate(new Date());
-		leaveRequest.setStuffId(stuffServiceImpl.findByUsername(username).getId());
-		leaveRequest.setTypeId(Long.parseLong(leaveTypeId));
-		leaveRequestServiceImpl.newApply(leaveRequest);
+		outRequest.setBeginTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse((datetimepicker1.replace("/", "-")+":00")));
+		outRequest.setEndTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(datetimepicker1.replace("/", "-")+":00"));
+		outRequest.setStatus(0);
+		outRequest.setModifyDate(new Date());
+		outRequest.setStuffId(stuffServiceImpl.findByUsername(username).getId());
+		outRequest.setTypeId(Long.parseLong(leaveTypeId));
+		outRequestServiceImpl.newApply(outRequest);
 		return null;
 
 	}
@@ -129,12 +110,12 @@ public class LeaveRequestController {
 			paraMap.put("status", status);
 		}
 		//查询我的申请数据
-		List<LeaveRequest> leaveRequestList=leaveRequestServiceImpl.findMyApplyByStuffId(paraMap);
+		List<OutRequest> outRequestList=outRequestServiceImpl.findMyApplyByStuffId(paraMap);
 		//查询我的申请各种状态数量
-		HashMap<String,Integer> statusMap=leaveRequestServiceImpl.findMyApplyAllConut(Long.parseLong("1"));
-		model.addAttribute("leaveRequestList", leaveRequestList);
+		HashMap<String,Integer> statusMap=outRequestServiceImpl.findMyApplyAllConut(Long.parseLong("1"));
+		model.addAttribute("outRequestList", outRequestList);
 		model.addAttribute("statusMap", statusMap);
-		return "/apply/myApply";
+		return "/out/myApply";
 
 	}
 	/**
@@ -157,11 +138,11 @@ public class LeaveRequestController {
 		}else{
 			paraMap.put("status1", status);
 		}
-		model.addAttribute("approveList", leaveRequestServiceImpl.selectApproveByID(paraMap));
+		model.addAttribute("approveList", outRequestServiceImpl.selectApproveByID(paraMap));
 		//查询我的申请各种状态数量
-		HashMap<String,Integer> statusMap=leaveRequestServiceImpl.findMyApproveAllConut(Long.parseLong("1"));
+		HashMap<String,Integer> statusMap=outRequestServiceImpl.findMyApproveAllConut(Long.parseLong("1"));
 		model.addAttribute("statusMap", statusMap);
-		return "/apply/myApprove";
+		return "/out/myApprove";
 
 	}
 	
@@ -180,7 +161,7 @@ public class LeaveRequestController {
 	public String forwordApplyDetail(int type,long leaveRequestId,Model model, HttpServletRequest request,
 			HttpServletResponse response,HttpSession session) throws Exception {
 		//请假申请
-		HashMap<String,Object> appylMap=leaveRequestServiceImpl.findApplyDetailByID(leaveRequestId);
+		HashMap<String,Object> appylMap=outRequestServiceImpl.findApplyDetailByID(leaveRequestId);
 		//获取审批人
 		//经理信息
 		List<Stuff> stuffList=stuffServiceImpl.selectAll();
@@ -194,7 +175,7 @@ public class LeaveRequestController {
 		}
 		model.addAttribute("appylMap", appylMap);
 		model.addAttribute("stuffList", stuffList);
-		return "/apply/detailApply";
+		return "/out/detailApply";
 
 	}
 	/**
@@ -204,15 +185,15 @@ public class LeaveRequestController {
 	public String approveApply(long apply_id,int approve_status,String approveId,
 			Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		LeaveRequest leaveRequest=leaveRequestServiceImpl.selectByPrimaryKey(apply_id);
+		OutRequest outRequest=outRequestServiceImpl.selectByPrimaryKey(apply_id);
 		
 		if(approve_status==403){
-			leaveRequest.setHandlerHistory(leaveRequest.getHandlerHistory()+";"+approveId);
-			leaveRequest.setLastHandler(stuffServiceImpl.findByUsername(approveId).getId());
+			outRequest.setHandlerHistory(outRequest.getHandlerHistory()+";"+approveId);
+			outRequest.setLastHandler(stuffServiceImpl.findByUsername(approveId).getId());
 		}else{
-			leaveRequest.setStatus(approve_status);
+			outRequest.setStatus(approve_status);
 		}
-		leaveRequestServiceImpl.updateByPrimaryKey(leaveRequest);
+		outRequestServiceImpl.updateByPrimaryKey(outRequest);
 		return null;
 
 	}

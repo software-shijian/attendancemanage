@@ -2,14 +2,14 @@
 <@common>
 	<script type="text/javascript">
 		$().ready(function(){
-			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApply.jhtml?status=3'>我的请假申请</a>");
-		})
-	</script>
+			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApply.jhtml?status=3'>我的外出申请</a>");
+		})	
+</script>
 <div class="row">		
 	<div class="col-lg-12">
 		<div class="panel panel-default bk-bg-white">
 			<div class="panel-heading bk-bg-white">
-				<h3><i class="fa fa-table"></i><span class="break"></span>我的请假申请</h3>
+				<h3><i class="fa fa-table"></i><span class="break"></span>我的外出申请</h3>
 				<div style="float:right;margin-top:10px;margin-bottom:5px;">
  <button type="button" class="btn btn-default"  data-toggle="button" onClick="all_status(3);"> 所有(${statusMap.all_approve})</button>
  <button type="button" class="btn btn-default"  data-toggle="button" onClick="all_status(0);"> 审批中(${statusMap.approve})</button>
@@ -33,38 +33,40 @@
 						          <th>操作</th>
 							</tr>
 						</thead>   
-						<tbody>			
-						<#list leaveRequestList as leaveRequest>		
-								<tr>
-								<td>${leaveRequest_index?number+1}</td>
-								<td>${leaveRequest.typeName!""}</td>
-								<td>${leaveRequest.description}</td>
-								<td>${(leaveRequest.applicationTime?string("yyyy-MM-dd HH:mm"))!}</td>
-								<td>${(leaveRequest.beginTime?string("yyyy-MM-dd HH:mm"))!}</td>
-								<td>${(leaveRequest.endTime?string("yyyy-MM-dd HH:mm"))!}</td>
-								<td>${leaveRequest.lastHandlerName!""}</td>
-								<td>
-									 <#if leaveRequest.status??>
-								          <#if leaveRequest.status==0>
-								                              审批中
-								          <#elseif leaveRequest.status==1>
-								         	同意
-								          <#else>
-								                            不同意
-								          </#if>
-								       </#if>
-								</td>
-								<td>
-									<button class="btn btn-info" onclick="approve(${leaveRequest.id},2)">
-										       详情                                  
-									</button>
-									
-								</td>
-							</tr>
-						</#list>
+						<tbody>		
+						<#if outRequestList??>	
+							<#list outRequestList as outRequest>		
+									<tr>
+									<td>${outRequest_index?number+1}</td>
+									<td>${outRequest.typeName!""}</td>
+									<td>${outRequest.description}</td>
+									<td>${(outRequest.applicationTime?string("yyyy-MM-dd HH:mm"))!}</td>
+									<td>${(outRequest.beginTime?string("yyyy-MM-dd HH:mm"))!}</td>
+									<td>${(outRequest.endTime?string("yyyy-MM-dd HH:mm"))!}</td>
+									<td>${outRequest.lastHandlerName!""}</td>
+									<td>
+										 <#if outRequest.status??>
+									          <#if outRequest.status==0>
+									                              审批中
+									          <#elseif outRequest.status==1>
+									         	同意
+									          <#else>
+									                            不同意
+									          </#if>
+									       </#if>
+									</td>
+									<td>
+										<button class="btn btn-info" onclick="approve(${outRequest.id},2)">
+											       详情                                  
+										</button>
+										
+									</td>
+								</tr>
+							</#list>
+						</#if>
 						</tbody>
 					</table>
-				
+					
 				</div>
 			</div>
 		</div>
@@ -84,13 +86,13 @@
 			 }else{
 			 	 status="?status=3"
 			 }
-		   	window.location.href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml"+status
+		   	window.location.href="/attendancemanage/nomal/out/forwordMyApply.jhtml"+status
 	     
 	 	}
 	 	
 	 	
 	 	function approve(para,type){
-	 		window.location.href="/attendancemanage/nomal/leavareq/forwordApplyDetail.jhtml?leaveRequestId="+para+"&type="+type;
+	 		window.location.href="/attendancemanage/nomal/out/forwordApplyDetail.jhtml?leaveRequestId="+para+"&type="+type;
 	 	}
    		
 </script>

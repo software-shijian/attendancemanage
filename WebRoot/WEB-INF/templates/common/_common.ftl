@@ -20,25 +20,15 @@
 <link href="${base}/css/styles.css" rel="stylesheet">
 
 
-<link href="${base}/datatables/jquery-datatables-bs3/css/datatables.css" rel="stylesheet" />
-<link href="${base}/datatables/select2.css" rel="stylesheet" />
-<link href="${base}/datatables/font-awesome.min.css" rel="stylesheet" />
-
-	
-<!-- datatables -->
-<script src="${base}/datatables/jquery-datatables/media/js/jquery.dataTables.js"></script>
-<script src="${base}/datatables/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
-<script src="${base}/datatables/jquery-datatables-bs3/js/datatables.js"></script>
-<script src="${base}/datatables/table-advanced.js"></script>
-<script src="${base}/datatables/select2.js"></script>
-<script src="${base}/js/jquery/jquery.min.js"></script>
-
 
 <!--[if lt IE 9]>
 
 <script src="${base}/js/html5shiv.js"></script>
 
 <script src="${base}/js/respond.min.js"></script>
+<script type="text/javascript">
+	
+</script>
 
 <![endif]-->
 
@@ -199,7 +189,8 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active" id="tabName"></li>
+				<li id="tabName"></li>
+			
 			</ol>
 		</div><!--/.row-->	
 		
@@ -207,14 +198,11 @@
 		
 	</div><!--/.main-->
 
-	<script src="${base}/js/jquery-1.11.1.min.js"></script>
-
 	<script src="${base}/js/bootstrap.min.js"></script>
 
 	<script src="${base}/js/chart.min.js"></script>
 	<script src="${base}/js/chart-data.js"></script>
 	<script src="${base}/js/easypiechart.js"></script>
-	<script src="${base}/js/easypiechart-data.js"></script>
 	<script src="${base}/js/bootstrap-datepicker.js"></script>
 	<script src="${base}/js/bootstrap-table.js"></script>
 	<script>

@@ -87,4 +87,8 @@ public class LeaveRequestServiceImpl implements LeaveRequestService {
    public HashMap<String,Integer> findMyApproveAllConut(Long id){
 	   return leaveRequestDao.findMyApproveAllConut(id);
    }
+   
+   public HashMap<String,Object> findApplyDetailByID(Long id){
+	   return leaveRequestDao.findApplyDetailByID(id);
+   }
 }

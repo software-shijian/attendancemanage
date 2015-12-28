@@ -9,7 +9,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Lumino - Tables</title>
+<title>考勤管理系统</title>
 
 
 
@@ -19,18 +19,11 @@
 
 <link href="${base}/css/styles.css" rel="stylesheet">
 
-
+<!--datatables-->
 <link href="${base}/datatables/jquery-datatables-bs3/css/datatables.css" rel="stylesheet" />
 <link href="${base}/datatables/select2.css" rel="stylesheet" />
 <link href="${base}/datatables/font-awesome.min.css" rel="stylesheet" />
 
-	
-<!-- datatables -->
-<script src="${base}/datatables/jquery-datatables/media/js/jquery.dataTables.js"></script>
-<script src="${base}/datatables/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
-<script src="${base}/datatables/jquery-datatables-bs3/js/datatables.js"></script>
-<script src="${base}/datatables/table-advanced.js"></script>
-<script src="${base}/datatables/select2.js"></script>
 <script src="${base}/js/jquery/jquery.min.js"></script>
 
 
@@ -87,12 +80,12 @@
 				</a>
 				<ul class="children collapse" id="check">
 					<li>
-						<a class="" href="#">
+						<a class="" href="record.jhtml">
 							<span class="glyphicon glyphicon-dashboard"></span> 考勤记录
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="chart.jhtml">
 							<span class="glyphicon glyphicon-dashboard"></span> 考勤统计
 						</a>
 					</li>
@@ -176,17 +169,7 @@
 					</li>
 					<li>
 						<a class="" href="#">
-							<span class="glyphicon glyphicon-th"></span> 员工角色配置
-						</a>
-					</li>
-					<li>
-						<a class="" href="#">
 							<span class="glyphicon glyphicon-th"></span> 假期配置
-						</a>
-					</li>
-					<li>
-						<a class="" href="#">
-							<span class="glyphicon glyphicon-th"></span> 系统配置
 						</a>
 					</li>
 				</ul>
@@ -196,12 +179,6 @@
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		<div class="row">
-			<ol class="breadcrumb">
-				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active" id="tabName"></li>
-			</ol>
-		</div><!--/.row-->	
 		
 		<#nested>
 		
@@ -217,6 +194,15 @@
 	<script src="${base}/js/easypiechart-data.js"></script>
 	<script src="${base}/js/bootstrap-datepicker.js"></script>
 	<script src="${base}/js/bootstrap-table.js"></script>
+	<script src="${base}/js/bootstrap-datepicker.zh-CN.js"></script>
+	
+	<!-- datatables -->
+    <script src="${base}/datatables/jquery-datatables/media/js/jquery.dataTables.js"></script>
+	<script src="${base}/datatables/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+	<script src="${base}/datatables/jquery-datatables-bs3/js/datatables.js"></script>
+	<script src="${base}/datatables/table-advanced.js"></script>
+	<script src="${base}/datatables/select2.js"></script>
+	
 	<script>
 		!function ($) {
 			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
@@ -232,6 +218,16 @@
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
 	</script>	
+	
+	<!-- 日历script -->
+	<script>
+		$('#calendar').datepicker({
+			language: "zh-CN",
+            todayHighlight: true
+		});
+	</script>
+	
+	
 </body>
 
 
