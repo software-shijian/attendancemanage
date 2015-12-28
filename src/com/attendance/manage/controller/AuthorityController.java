@@ -43,14 +43,17 @@ public class AuthorityController {
 		return "/setting/roleAuthority";
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.PUT)
+	@RequestMapping(value = "/put", method = RequestMethod.PUT)
 	public String editRoleAuthority(RoleAuthority roleAuthority, Model model,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		if (roleAuthority == null || roleAuthority.getId() == null) {
 			model.addAttribute("result", 0);
+		} else {
+			roleAuthorityServiceImpl.updateByPrimaryKey(roleAuthority);
+			model.addAttribute("result", 1);
 		}
-		roleAuthorityServiceImpl.updateByPrimaryKey(roleAuthority);
+
 		return "";
 
 	}
@@ -61,20 +64,24 @@ public class AuthorityController {
 			throws Exception {
 		if (id == null) {
 			model.addAttribute("result", 0);
+		} else {
+			roleAuthorityServiceImpl.deleteByPrimaryKey(id);
+			model.addAttribute("result", 1);
 		}
-		roleAuthorityServiceImpl.deleteByPrimaryKey(id);
 		return "";
 
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/post", method = RequestMethod.POST)
 	public String addRoleAuthority(RoleAuthority roleAuthority, Model model,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		if (roleAuthority == null) {
 			model.addAttribute("result", 0);
+		} else {
+			roleAuthorityServiceImpl.insert(roleAuthority);
+			model.addAttribute("result", 1);
 		}
-		roleAuthorityServiceImpl.insert(roleAuthority);
 		return "";
 
 	}

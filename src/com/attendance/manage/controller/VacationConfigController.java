@@ -1,6 +1,7 @@
 package com.attendance.manage.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,14 +39,21 @@ public class VacationConfigController {
 		return "/setting/vacationInfo";
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.PUT)
+	@RequestMapping(value = "/put", method = RequestMethod.PUT)
 	public String editVacationInfo(VacationInfo vacationInfo, Model model,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		if (vacationInfo == null || vacationInfo.getId() == null) {
 			model.addAttribute("result", 0);
+		} else {
+			VacationInfo vacationInfo2 = vacationInfoServiceImpl
+					.selectByPrimaryKey(vacationInfo.getId());
+			vacationInfo.setCreateDate(vacationInfo2.getCreateDate());
+			vacationInfo.setModifyDate(new Date());
+			vacationInfoServiceImpl.updateByPrimaryKey(vacationInfo);
+			model.addAttribute("result", 1);
 		}
-		vacationInfoServiceImpl.updateByPrimaryKey(vacationInfo);
+
 		return "";
 
 	}
@@ -56,20 +64,28 @@ public class VacationConfigController {
 			throws Exception {
 		if (id == null) {
 			model.addAttribute("result", 0);
+		} else {
+			vacationInfoServiceImpl.deleteByPrimaryKey(id);
+			model.addAttribute("result", 1);
 		}
-		vacationInfoServiceImpl.deleteByPrimaryKey(id);
+
 		return "";
 
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/post", method = RequestMethod.POST)
 	public String addVacationInfo(VacationInfo vacationInfo, Model model,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		if (vacationInfo == null) {
 			model.addAttribute("result", 0);
+		} else {
+			vacationInfo.setCreateDate(new Date());
+			vacationInfo.setModifyDate(new Date());
+			vacationInfoServiceImpl.insert(vacationInfo);
+			model.addAttribute("result", 1);
 		}
-		vacationInfoServiceImpl.insert(vacationInfo);
+
 		return "";
 
 	}

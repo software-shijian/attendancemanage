@@ -49,10 +49,11 @@ public interface StuffService {
 	boolean usernameExists(String username);
 
 	public Stuff findByUsername(String username);
+
 	public Stuff findUserInfo(String username);
 
 	public List<String> findAuthorities(Long id);
-	
-	
+
+	List<Stuff> selectSortedAll();
 
 }

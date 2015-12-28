@@ -38,16 +38,20 @@ public class SystemConfigController {
 		return "/setting/systemConfig";
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.PUT)
-	public String editSystemConfig(String key, SystemConfig systemConfig,
-			Model model, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		if (key == null) {
+	@RequestMapping(value = "/put", method = RequestMethod.PUT)
+	public String editSystemConfig(SystemConfig systemConfig, Model model,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		if (systemConfig == null
+				|| systemConfig.getsKey() == null
+				|| systemConfigServiceImpl.selectByKey(systemConfig.getsKey()) == null) {
 			model.addAttribute("result", 0);
+		} else {
+			systemConfigServiceImpl.updateByKey(systemConfig);
+			model.addAttribute("result", 1);
 		}
-		systemConfigServiceImpl.updateByKey(systemConfig);
-		return "";
 
+		return "";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
@@ -56,20 +60,32 @@ public class SystemConfigController {
 			throws Exception {
 		if (key == null) {
 			model.addAttribute("result", 0);
+		} else {
+			systemConfigServiceImpl.deleteByKey(key);
+			model.addAttribute("result", 1);
 		}
-		systemConfigServiceImpl.deleteByKey(key);
+
 		return "";
 
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/post", method = RequestMethod.POST)
 	public String addSystemConfig(SystemConfig systemConfig, Model model,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		if (systemConfig == null) {
+		if (systemConfig == null || systemConfig.getsKey() == null) {
 			model.addAttribute("result", 0);
+		} else {
+			SystemConfig config = systemConfigServiceImpl
+					.selectByKey(systemConfig.getsKey());
+			if (config != null) {
+				model.addAttribute("result", 0);
+			} else {
+				systemConfigServiceImpl.insert(systemConfig);
+				model.addAttribute("result", 1);
+			}
 		}
-		systemConfigServiceImpl.insert(systemConfig);
+
 		return "";
 
 	}

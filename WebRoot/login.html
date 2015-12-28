@@ -47,7 +47,7 @@
         $('#login_form').bind('submit', function(){
        //username= $('#username').val();
        // password=$('#password').val();
- $.ajax({type:"post",url:"/attendancemanage/login/submit.json",data:$('#login_form').serialize(),success: function(data){
+ $.ajax({type:"post",url:"/attendancemanage/login/submit.json",contentType: "application/x-www-form-urlencoded; charset=utf-8",data:$('#login_form').serialize(),success: function(data){
  if(data=="success")window.location.href="/attendancemanage/login/index.jhtml"; else $('#err').html(data);
  }});   
                 return false;

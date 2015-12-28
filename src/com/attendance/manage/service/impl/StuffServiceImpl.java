@@ -86,7 +86,7 @@ public class StuffServiceImpl implements StuffService {
 	public Stuff findByUsername(String username) {
 		return stuffDao.findByUsername(username);
 	}
-	
+
 	public Stuff findUserInfo(String username) {
 		return stuffDao.findByUsername(username);
 	}
@@ -109,6 +109,11 @@ public class StuffServiceImpl implements StuffService {
 		}
 
 		return authorities;
+	}
+
+	public List<Stuff> selectSortedAll() {
+		// TODO Auto-generated method stub
+		return stuffDao.selectSortedAll();
 	}
 
 }

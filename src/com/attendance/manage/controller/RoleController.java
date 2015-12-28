@@ -1,6 +1,7 @@
 package com.attendance.manage.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,13 +38,19 @@ public class RoleController {
 		return "/setting/role";
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.PUT)
+	@RequestMapping(value = "/put", method = RequestMethod.PUT)
 	public String editRole(Role role, Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		if (role == null || role.getId() == null) {
 			model.addAttribute("result", 0);
+		} else {
+			Role role2 = roleServiceImpl.selectByPrimaryKey(role.getId());
+			role.setCreateDate(role2.getCreateDate());
+			role.setModifyDate(new Date());
+			roleServiceImpl.updateByPrimaryKey(role);
+			model.addAttribute("result", 1);
 		}
-		roleServiceImpl.updateByPrimaryKey(role);
+
 		return "";
 
 	}
@@ -55,17 +62,23 @@ public class RoleController {
 			model.addAttribute("result", 0);
 		}
 		roleServiceImpl.deleteByPrimaryKey(id);
+		model.addAttribute("result", 1);
 		return "";
 
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/post", method = RequestMethod.POST)
 	public String addRole(Role role, Model model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		if (role == null) {
 			model.addAttribute("result", 0);
+		} else {
+			role.setCreateDate(new Date());
+			role.setModifyDate(new Date());
+			roleServiceImpl.insert(role);
+			model.addAttribute("result", 1);
+
 		}
-		roleServiceImpl.insert(role);
 		return "";
 
 	}

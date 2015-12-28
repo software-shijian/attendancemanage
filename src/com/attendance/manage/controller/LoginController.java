@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.attendance.manage.model.Stuff;
 import com.attendance.manage.service.StuffService;
-import com.attendance.manage.util.EmailUtils;
+import com.attendance.manage.util.Email;
 import com.attendance.manage.util.WebUtils;
 
 /**
@@ -123,7 +123,7 @@ public class LoginController {
 			model.addAttribute("message", "邮箱错误！");
 			return "";
 		}
-		EmailUtils.sendResetEmail(email);
+		Email.sendResetEmail(email);
 		model.addAttribute("message", "succsess");
 		return "";
 	}
