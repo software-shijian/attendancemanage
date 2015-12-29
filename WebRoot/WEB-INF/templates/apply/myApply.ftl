@@ -1,10 +1,16 @@
 <#include "../common/_common1.ftl"/>
 <@common>
-	<script type="text/javascript">
-		$().ready(function(){
-			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApply.jhtml?status=3'>我的请假申请</a>");
-		})
-	</script>
+		<link href="${base}/vendor/skycons/css/skycons.css" rel="stylesheet" />
+		<link href="${base}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="${base}/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />					
+		<link href="${base}/css/add-ons.min.css" rel="stylesheet" />
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+				<li id="tabName">请假管理</li>
+			
+			</ol>
+		</div><!--/.row-->	
 <div class="row">		
 	<div class="col-lg-12">
 		<div class="panel panel-default bk-bg-white">

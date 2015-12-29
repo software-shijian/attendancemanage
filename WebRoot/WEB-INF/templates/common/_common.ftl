@@ -19,7 +19,12 @@
 
 <link href="${base}/css/styles.css" rel="stylesheet">
 
-
+	<link href="${base}/vendor/skycons/css/skycons.css" rel="stylesheet" />
+		<link href="${base}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="${base}/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />					
+		<link href="${base}/css/add-ons.min.css" rel="stylesheet" />
+		<link href="${base}/css/toastr/toastr.min.css" rel="stylesheet" />
+		<script src="${base}/js/toastr/toastr.min.js"></script>
 
 <!--[if lt IE 9]>
 
@@ -51,11 +56,9 @@
 				<a class="navbar-brand" href="#"><span>考勤</span>管理</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>欢迎您， ${Session.username!""} <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+							<li><a href="/attendancemanage/logout.jhtml"><span class="glyphicon glyphicon-log-out"></span> 注销</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -77,12 +80,12 @@
 				</a>
 				<ul class="children collapse" id="check">
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/attendanceRecord/record.jhtml">
 							<span class="glyphicon glyphicon-dashboard"></span> 考勤记录
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/attendanceRecord/chart.jhtml">
 							<span class="glyphicon glyphicon-dashboard"></span> 考勤统计
 						</a>
 					</li>
@@ -138,13 +141,18 @@
 				</a>
 				<ul class="children collapse" id="query">
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/search/attendanceRecord.jhtml">
 							<span class="glyphicon glyphicon-stats"></span> 考勤查询
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
-							<span class="glyphicon glyphicon-stats"></span> 审批查询
+						<a class="" href="/attendancemanage/search/leaveRequest.jhtml">
+							<span class="glyphicon glyphicon-stats"></span> 请假审批查询
+						</a>
+					</li>
+					<li>
+						<a class="" href="/attendancemanage/search/outRequest.jhtml">
+							<span class="glyphicon glyphicon-stats"></span> 外出审批查询
 						</a>
 					</li>
 				</ul>
@@ -155,27 +163,27 @@
 				</a>
 				<ul class="children collapse" id="setting">
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/setting/role.jhtml">
 							<span class="glyphicon glyphicon-th"></span> 角色设置
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/setting/roleAuthority.jhtml">
 							<span class="glyphicon glyphicon-th"></span> 权限设置
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/setting/stuffRole.jhtml">
 							<span class="glyphicon glyphicon-th"></span> 员工角色配置
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/setting/vacationInfo.jhtml">
 							<span class="glyphicon glyphicon-th"></span> 假期配置
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/setting/systemConfig.jhtml">
 							<span class="glyphicon glyphicon-th"></span> 系统配置
 						</a>
 					</li>
@@ -186,13 +194,7 @@
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		<div class="row">
-			<ol class="breadcrumb">
-				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li id="tabName"></li>
-			
-			</ol>
-		</div><!--/.row-->	
+	
 		
 		<#nested>
 		

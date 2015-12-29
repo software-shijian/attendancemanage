@@ -48,7 +48,7 @@
        //username= $('#username').val();
        // password=$('#password').val();
  $.ajax({type:"post",url:"/attendancemanage/login/submit.json",contentType: "application/x-www-form-urlencoded; charset=utf-8",data:$('#login_form').serialize(),success: function(data){
- if(data=="success")window.location.href="/attendancemanage/login/index.jhtml"; else $('#err').html(data);
+ if(data=="success")window.location.href="/attendancemanage/attendanceRecord/record.jhtml"; else $('#err').html(data);
  }});   
                 return false;
      });
@@ -67,7 +67,7 @@
 				<form id="login_form"  name="login_form">
 						<div id="err"  name="err" style="margin:5px"></div>	
 						<input id="username"  name="username" type="text" class="text" value="用户名" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '用户名';}" >
-						<input id="password"  name="password" type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+						<input id="password"  name="password" type="password" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
 						<div class="submit">
 							<input type="submit"  value="登 陆" >
 					</div>	

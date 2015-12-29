@@ -29,6 +29,7 @@
 													<th>工龄</th>
 													<th>年龄</th>
 													<th>性别</th>
+													<th>类别</th>
 													<!--<th>状态</th>-->
 													<th>操作</th>
 												</tr>
@@ -41,7 +42,7 @@
 													<td><#if vacationInfo.seniority??>${vacationInfo.seniority!""}<#else>不限</#if></td>
 													<td><#if vacationInfo.age??>${vacationInfo.age!""}<#else>不限</#if></td>
 													<td><#if vacationInfo.gender??><label style="display:none">${vacationInfo.gender}</label><#if vacationInfo.gender==0>男<#else>女</#if><#else><label style="display:none">3</label>不限</#if></td>
-													
+													<td>${vacationInfo.type!""}</td>
 													<!--<td>
 														<span class="label label-warning">Pending</span>
 													</td>-->
@@ -114,6 +115,14 @@
                                     </th>
                                   </tr>
                                   <tr>
+                                    <th><span style="color:#F00"> </span> 类别：</th>
+                                    <th >
+                                       <input type="text"  id ="type" name="type" class="form-control">
+                                       
+                                      <th> 
+                                    </th>
+                                  </tr>
+                                  <tr>
                                   <th><span style="color:#F00">*注意</span> </th>
                                     <th >
                                        <span>工龄，年龄栏请填写具体数字！性别栏男请填0，女请填1！否则留空！</span>
@@ -180,6 +189,7 @@ function update(obj){
 		$('.modal-title').text("新增");
 		$('#name').removeAttr("readonly");
 		$('#age').val("");
+		$('#type').val("");
 		$('#name').val("");
 		$('#gender').val("");
 		$('#days').val("");

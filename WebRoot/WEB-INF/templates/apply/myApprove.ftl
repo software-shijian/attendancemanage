@@ -1,15 +1,21 @@
 <#include "../common/_common1.ftl"/>
 <@common>
-	<script type="text/javascript">
-		$().ready(function(){
-			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApprove.jhtml?status=3'>我的请假审批</a>");
-		})
-	</script>
+		<link href="${base}/vendor/skycons/css/skycons.css" rel="stylesheet" />
+		<link href="${base}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="${base}/plugins/jquery-ui/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />					
+		<link href="${base}/css/add-ons.min.css" rel="stylesheet" />
+			<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+				<li id="tabName">请假管理</li>
+			
+			</ol>
+		</div><!--/.row-->		
 <div class="row">		
 	<div class="col-lg-12">
 		<div class="panel panel-default bk-bg-white">
 			<div class="panel-heading bk-bg-white">
-				<h3><i class="fa fa-table"></i><span class="break"></span>我的请假审批</h3>
+				<h3><i class="fa fa-table"></i><span class="break"></span>我的审批</h3>
 				<div style="float:right;margin-top:10px;margin-bottom:5px;">
  <button type="button" class="btn btn-default"  data-toggle="button" onClick="all_status(3);"> 所有(${statusMap.all_approve})</button>
  <button type="button" class="btn btn-default"  data-toggle="button" onClick="all_status(1);"> 同意(${statusMap.ok_approve})</button>

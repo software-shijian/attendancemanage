@@ -94,6 +94,7 @@ public class LoginController {
 		subject.login(token);
 		WebUtils.addCookie(request, response, Stuff.USERNAME_COOKIE_NAME,
 				username);
+		session = request.getSession();
 		session.setAttribute("username", username);
 		model.addAttribute("massage", "success");
 		return "";

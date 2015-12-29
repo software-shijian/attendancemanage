@@ -26,12 +26,15 @@
 </context:component-scan>
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/login.jhtml"/>
+		<property name="loginUrl" value="/login.html"/>
 		<property name="unauthorizedUrl" value="/common/unauthorized.jhtml" />
 		<property name="filterChainDefinitions">
 			<value>
-				/* = anon
-				/login/submit.jhtml = anon
+				/login/** = anon
+				/setting/**=authc
+				/attendanceRecord/**=authc
+				/nomal/**=authc
+				/search/**=authc
 				/products/list.jhtml=authc
 				
 				

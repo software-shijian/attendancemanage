@@ -48,11 +48,9 @@
 				<a class="navbar-brand" href="#"><span>考勤</span>管理</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> 欢迎您，${Session.username!""} <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+							<li><a href="/attendancemanage/logout.jhtml"><span class="glyphicon glyphicon-log-out"></span> 注销</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -74,12 +72,12 @@
 				</a>
 				<ul class="children collapse" id="check">
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/attendanceRecord/record.jhtml">
 							<span class="glyphicon glyphicon-dashboard"></span> 考勤记录
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/attendanceRecord/chart.jhtml">
 							<span class="glyphicon glyphicon-dashboard"></span> 考勤统计
 						</a>
 					</li>
@@ -91,17 +89,17 @@
 				</a>
 				<ul class="children collapse" id="leave">
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/nomal/leavareq/forwordApply.jhtml">
 							<span class="glyphicon glyphicon-pencil"></span> 申请
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
-							<span class="glyphicon glyphicon-pencil"></span> 我的申请
+						<a class="" href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml?status=3">
+							<span class="glyphicon glyphicon-pencil" ></span> 我的申请
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/nomal/leavareq/forwordMyApprove.jhtml?status=3">
 							<span class="glyphicon glyphicon-pencil"></span> 我的审批
 						</a>
 					</li>
@@ -113,17 +111,17 @@
 				</a>
 				<ul class="children collapse" id="out">
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/nomal/out/forwordApply.jhtml">
 							<span class="glyphicon glyphicon-pencil"></span> 申请
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
-							<span class="glyphicon glyphicon-pencil"></span> 我的申请
+						<a class="" href="/attendancemanage/nomal/out/forwordMyApply.jhtml?status=3">
+							<span class="glyphicon glyphicon-pencil" ></span> 我的申请
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/nomal/out/forwordMyApprove.jhtml?status=3">
 							<span class="glyphicon glyphicon-pencil"></span> 我的审批
 						</a>
 					</li>
@@ -135,13 +133,18 @@
 				</a>
 				<ul class="children collapse" id="query">
 					<li>
-						<a class="" href="#">
+						<a class="" href="/attendancemanage/search/attendanceRecord.jhtml">
 							<span class="glyphicon glyphicon-stats"></span> 考勤查询
 						</a>
 					</li>
 					<li>
-						<a class="" href="#">
-							<span class="glyphicon glyphicon-stats"></span> 审批查询
+						<a class="" href="/attendancemanage/search/leaveRequest.jhtml">
+							<span class="glyphicon glyphicon-stats"></span> 请假审批查询
+						</a>
+					</li>
+					<li>
+						<a class="" href="/attendancemanage/search/outRequest.jhtml">
+							<span class="glyphicon glyphicon-stats"></span> 外出审批查询
 						</a>
 					</li>
 				</ul>

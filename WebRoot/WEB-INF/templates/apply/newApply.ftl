@@ -2,13 +2,23 @@
 <link rel="stylesheet" type="text/css" href="${base}/css/jquery.datetimepicker.css"/ >
 <script src="${base}/js/jquery.js"></script>
 <script src="${base}/js/jquery.datetimepicker.js"></script>
-<script type="text/javascript">
-	$().ready(function(){
-		$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordApply.jhtml'>新建请假申请</a>");
-	})
-</script>
+
 <@common>
-       <table class="table" style="margin-top:45px;">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+				<li id="tabName">外出管理</li>
+			
+			</ol>
+		</div><!--/.row-->	
+<div class="row">		
+		<div class="col-lg-12">
+					<div class="panel panel-default bk-bg-white">
+								<div class="panel-heading bk-bg-white">
+									<h3><i class="fa fa-table"></i><span class="break"></span> 新建申请</h3>
+								</div>
+						
+       <table class="table" >
        	  <input type="hidden" id="username" value="${stuff.username!""}"/>
           <tbody>
               <tr>
@@ -77,7 +87,10 @@
              </tr>
            </tbody>
        </table>
-      
+       	</div>
+	</div>
+       
+</div>     
 </@common>
 <script type="text/javascript">
 	  
@@ -114,8 +127,9 @@
 	      	alert('请选择开始时间不能大于结束时间', '友情提示！');
 	      	return
 	      }
-	     $.get(
+	     $.post(
 		     "/attendancemanage/nomal/leavareq/newApply.jhtml",
+		    
 		     {'description':description,'approveId':approveId,"username":username,"datetimepicker1":datetimepicker1,"datetimepicker2":datetimepicker2,"leaveTypeId":leaveTypeId},
 		     function(msg){
 			     window.location.href="/attendancemanage/nomal/leavareq/forwordMyApply.jhtml?status=3"

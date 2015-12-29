@@ -136,7 +136,7 @@
 	(select de.department_name from department de,stuff st where de.id=st.depart and st.id=stuff_id) departmentName,
 	application_time,begin_time,end_time,description,
 	(select sf.username from stuff sf where sf.id=last_handler) handlerName,id,
-	status,handler_history
+	status,handler_history,stuff_id
 	from leave_request
 	where id=#{id,jdbcType=BIGINT}  
   </select>

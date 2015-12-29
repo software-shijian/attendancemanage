@@ -2,21 +2,20 @@
 <link rel="stylesheet" type="text/css" href="${base}/css/jquery.datetimepicker.css"/ >
 <script src="${base}/js/jquery.js"></script>
 <script src="${base}/js/jquery.datetimepicker.js"></script>
-<script type="text/javascript">
-	$().ready(function(){
-		<#if type==2>
-			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApply.jhtml?status=3'>我的外出申请</a>><a href='#'>外出申请详情</a>");
-		</#if>
-		<#if type==0>
-			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApprove.jhtml?status=3'>我的外出审批</a>><a href='#'>外出申请详情</a>");
-		</#if>
-		<#if type==1>
-			$("#tabName").append("<a href='/attendancemanage/nomal/out/forwordMyApprove.jhtml?status=3'>我的外出审批</a>><a href='#'>外出申请审批</a>");
-		</#if>
-	})
-</script>
 
 <@common>
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+				<li id="tabName">外出管理</li>
+			
+			</ol>
+		</div><!--/.row-->	
+		<div class="row">		
+	<div class="col-lg-12">
+		<div class="panel panel-default bk-bg-white">
+			<div class="panel-heading bk-bg-white">
+				<h3><i class="fa fa-table"></i><span class="break"></span>我的外出申请${appylMap.id!""}</h3></div>
        <table class="table" style="margin-top:45px;">
        	  <input type="hidden" id="apply_id" value="${appylMap.id!""}"/>
           <tbody>
@@ -142,7 +141,9 @@
              </tr>
            </tbody>
        </table>
-      
+     		</div>
+	</div>					
+</div>    
 </@common>
 <script type="text/javascript">
 	  
